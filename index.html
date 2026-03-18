@@ -1,0 +1,2082 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chloe Nixon — Webflow Developer & UI/UX Designer</title>
+    <meta
+      name="description"
+      content="Australian Webflow developer and UI/UX designer turning bold ideas into beautifully crafted websites."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --accent: #c8602a;
+        --accent-light: #e8825a;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        cursor: none;
+        background-color: #f8f7f5;
+        background-image:
+          radial-gradient(
+            ellipse 80% 60% at 50% 0%,
+            rgba(200, 96, 42, 0.07) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 60% 50% at 50% 100%,
+            rgba(200, 96, 42, 0.05) 0%,
+            transparent 70%
+          );
+        background-attachment: fixed;
+      }
+      a,
+      button,
+      [role="button"] {
+        cursor: none;
+      }
+      iconify-icon {
+        stroke-width: 1.5;
+      }
+
+      @keyframes marquee {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .animate-marquee {
+        animation: marquee 30s linear infinite;
+      }
+      .grid-lines {
+        background-image: linear-gradient(
+          to right,
+          rgba(41, 37, 36, 0.04) 1px,
+          transparent 1px
+        );
+        background-size: 25% 100%;
+      }
+
+      /* ── Custom cursor ── */
+      #cursor {
+        width: 10px;
+        height: 10px;
+        background: var(--accent);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.2s,
+          height 0.2s,
+          background 0.2s;
+      }
+      #cursor-ring {
+        width: 36px;
+        height: 36px;
+        border: 1.5px solid rgba(200, 96, 42, 0.4);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.3s,
+          height 0.3s,
+          border-color 0.3s;
+      }
+      body.cursor-hover #cursor {
+        width: 20px;
+        height: 20px;
+      }
+      body.cursor-hover #cursor-ring {
+        width: 58px;
+        height: 58px;
+        border-color: var(--accent);
+      }
+
+      /* ── Nav ── */
+      #main-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.6rem 3rem;
+        transition:
+          background 0.35s,
+          backdrop-filter 0.35s;
+      }
+      #main-nav.nav-scrolled {
+        background: rgba(248, 247, 245, 0.96);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .nav-logo {
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #1c1a17;
+        text-decoration: none;
+        position: relative;
+        z-index: 1001;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+        position: relative;
+        z-index: 1001;
+      }
+      .nav-links a {
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #6b6560;
+        text-decoration: none;
+        transition: color 0.25s;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+      .nav-hamburger {
+        background: none;
+        border: none;
+        padding: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        position: relative;
+        z-index: 1001;
+        cursor: none;
+      }
+      .nav-hamburger span {
+        display: block;
+        width: 24px;
+        height: 1.5px;
+        background: #1c1a17;
+        transition:
+          transform 0.35s,
+          opacity 0.35s,
+          background 0.25s;
+        transform-origin: center;
+      }
+      .nav-hamburger:hover span {
+        background: var(--accent);
+      }
+      .menu-open .nav-hamburger span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+        background: var(--accent);
+      }
+      .menu-open .nav-hamburger span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .menu-open .nav-hamburger span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+        background: var(--accent);
+      }
+
+      /* ── Bento menu ── */
+      #bento-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        background: #f4efe8;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        pointer-events: none;
+        overflow: hidden;
+        clip-path: circle(0% at calc(100% - 3.5rem) 2.5rem);
+        transition: clip-path 0.65s cubic-bezier(0.76, 0, 0.24, 1);
+      }
+      #bento-menu.active {
+        pointer-events: all;
+        clip-path: circle(150% at calc(100% - 3.5rem) 2.5rem);
+      }
+      .bento-bg-text {
+        position: absolute;
+        font-size: 28vw;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.07);
+        white-space: nowrap;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 0;
+        letter-spacing: -0.02em;
+        filter: blur(18px);
+      }
+
+      /* ── Bento cell entrance animation ── */
+      #bento-menu .bento-cell {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.45s ease,
+          transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      #bento-menu .bento-bg-text {
+        opacity: 0;
+        transform: translate(-50%, calc(-50% + 22px));
+        transition:
+          opacity 0.45s ease,
+          transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      #bento-menu.active .bento-cell {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      #bento-menu.active .bento-bg-text {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+      #bento-menu .bento-cell:nth-child(2) {
+        transition-delay: 0.04s;
+      }
+      #bento-menu .bento-cell:nth-child(3) {
+        transition-delay: 0.08s;
+      }
+      #bento-menu .bento-cell:nth-child(4) {
+        transition-delay: 0.12s;
+      }
+      #bento-menu .bento-cell:nth-child(5) {
+        transition-delay: 0.16s;
+      }
+      #bento-menu .bento-cell:nth-child(6) {
+        transition-delay: 0.2s;
+      }
+      #bento-menu .bento-cell:nth-child(7) {
+        transition-delay: 0.24s;
+      }
+      .bento-cell {
+        position: relative;
+        border: 1px solid rgba(0, 0, 0, 0.07);
+        padding: 2.5rem;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        overflow: hidden;
+        transition: background 0.3s;
+        z-index: 1;
+        text-decoration: none;
+        color: #1c1a17;
+      }
+      .bento-cell:hover {
+        background: rgba(200, 96, 42, 0.06);
+      }
+      .bento-cell .bc-num {
+        position: absolute;
+        top: 2rem;
+        left: 2.5rem;
+        font-size: 0.6rem;
+        color: var(--accent);
+        letter-spacing: 0.2em;
+      }
+      .bento-cell .bc-label {
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: 0.04em;
+      }
+      .bento-cell .bc-sub {
+        font-size: 0.7rem;
+        color: #9a8e84;
+        margin-top: 0.4rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .bento-cell .bc-arrow {
+        position: absolute;
+        bottom: 2rem;
+        right: 2.5rem;
+        font-size: 1.2rem;
+        color: var(--accent);
+        transition: transform 0.25s;
+      }
+      .bento-cell:hover .bc-arrow {
+        transform: translate(4px, -4px);
+      }
+
+      /* ── Card carousel ── */
+      .card-rotator {
+        perspective: 1200px;
+      }
+      .card-slide {
+        transition: all 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .card-active {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+        z-index: 30;
+      }
+      .card-next {
+        transform: translateX(6%) scale(0.97);
+        opacity: 0.5;
+        z-index: 20;
+        pointer-events: none;
+      }
+      .card-hidden {
+        transform: translateX(12%) scale(0.94);
+        opacity: 0;
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      /* ── Browser chrome ── */
+      .browser-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        background: #ede9e3;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        flex-shrink: 0;
+      }
+      .browser-dots {
+        display: flex;
+        gap: 5px;
+        flex-shrink: 0;
+      }
+      .browser-dots span {
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .browser-dots span:nth-child(1) {
+        background: #ff5f57;
+      }
+      .browser-dots span:nth-child(2) {
+        background: #febc2e;
+      }
+      .browser-dots span:nth-child(3) {
+        background: #28c840;
+      }
+      .browser-url {
+        flex: 1;
+        max-width: 320px;
+        background: rgba(0, 0, 0, 0.06);
+        border-radius: 5px;
+        padding: 3px 10px;
+        font-size: 11px;
+        color: #8a7f75;
+        letter-spacing: 0.03em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* ── Cool CTA button ── */
+      .btn-morph {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 34px;
+        background: #1c1a17;
+        color: #fff;
+        border-radius: 100px;
+        overflow: hidden;
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 0.01em;
+        border: none;
+        text-decoration: none;
+        transition: color 0.45s ease;
+      }
+      .btn-morph::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--accent);
+        border-radius: 100px;
+        transform: translateY(101%);
+        transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+      }
+      .btn-morph:hover::before {
+        transform: translateY(0);
+      }
+      .btn-morph .bm-text,
+      .btn-morph .bm-icon {
+        position: relative;
+        z-index: 1;
+        transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+      }
+      .btn-morph:hover .bm-text {
+        transform: translateY(-2px);
+      }
+      .btn-morph:hover .bm-icon {
+        transform: translate(4px, -4px);
+      }
+
+      /* ── Accent dots on section labels ── */
+      .accent-dot {
+        background: var(--accent);
+      }
+
+      /* ── CTA blob animation ── */
+      @keyframes blobPulse1 {
+        0%,
+        100% {
+          transform: scale(1) translateY(0px);
+          opacity: 0.65;
+        }
+        50% {
+          transform: scale(1.25) translateY(-55px);
+          opacity: 0.85;
+        }
+      }
+      @keyframes blobPulse2 {
+        0%,
+        100% {
+          transform: scale(1) translateY(0px);
+          opacity: 0.6;
+        }
+        50% {
+          transform: scale(1.22) translateY(55px);
+          opacity: 0.8;
+        }
+      }
+
+      /* ── CTA ember particles ── */
+      @keyframes ctaEmberRise {
+        0% {
+          transform: translateY(0px) translateX(0px);
+          opacity: 0;
+        }
+        8% {
+          opacity: 0.75;
+        }
+        45% {
+          transform: translateY(-42vh) translateX(14px);
+          opacity: 0.45;
+        }
+        100% {
+          transform: translateY(-100vh) translateX(-8px);
+          opacity: 0;
+        }
+      }
+      @keyframes ctaEmberSway {
+        0%,
+        100% {
+          transform: translateX(0px);
+        }
+        50% {
+          transform: translateX(12px);
+        }
+      }
+      .cta-ember {
+        position: absolute;
+        bottom: -8px;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: rgba(232, 130, 90, 0.9);
+        box-shadow: 0 0 6px 2px rgba(200, 96, 42, 0.5);
+        filter: blur(0.5px);
+        animation: ctaEmberRise linear infinite;
+      }
+
+      /* ── Touch / mobile overrides ── */
+      @media (hover: none), (pointer: coarse) {
+        body { cursor: auto; }
+        a, button, [role="button"] { cursor: auto; }
+        #cursor, #cursor-ring { display: none !important; }
+      }
+
+      @media (max-width: 640px) {
+        #main-nav { padding: 1.1rem 1.25rem; }
+
+        /* Bento menu → full-screen vertical list on mobile */
+        #bento-menu {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 7rem 2rem 3rem;
+          grid-template-columns: unset;
+          grid-template-rows: unset;
+          gap: 0;
+        }
+        .bento-bg-text { display: none; }
+        .bento-cell {
+          padding: 1.4rem 0;
+          border: none;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+          border-radius: 0;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          background: transparent !important;
+        }
+        .bento-cell:first-of-type { border-top: 1px solid rgba(0, 0, 0, 0.08); }
+        .bento-cell .bc-num { position: static; font-size: 0.6rem; margin-right: 1rem; }
+        .bento-cell .bc-label { font-size: clamp(1.8rem, 9vw, 2.6rem); flex: 1; }
+        .bento-cell .bc-sub { display: none; }
+        .bento-cell .bc-arrow { position: static; }
+        /* Hide the status-only cell on mobile */
+        #bento-menu > div[style*="pointer-events:none"] { display: none; }
+
+        /* Project cards on mobile */
+        .card-rotator { height: 380px !important; }
+        .card-img-wrap { height: 240px !important; }
+        .card-img-wrap img { object-fit: contain; background: #f5f4f2; }
+      }
+    </style>
+  </head>
+
+  <body class="text-stone-900 overflow-x-hidden selection:bg-orange-100">
+    <!-- Custom cursor -->
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- Grid bg -->
+    <div
+      class="fixed inset-0 pointer-events-none z-0 flex justify-center w-full max-w-7xl mx-auto border-x border-stone-200/50"
+    >
+      <div class="w-full h-full grid-lines"></div>
+    </div>
+
+    <!-- ── Navigation ── -->
+    <nav id="main-nav">
+      <a href="#" class="nav-logo">Chloe Nixon</a>
+      <button class="nav-hamburger" id="menuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- ── Bento Menu ── -->
+    <div id="bento-menu">
+      <div class="bento-bg-text">MENU</div>
+      <a href="#projects" class="bento-cell" data-close-menu>
+        <div class="bc-num">01</div>
+        <div class="bc-label">Work</div>
+        <div class="bc-sub">Featured projects</div>
+        <div class="bc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+      <a href="#about" class="bento-cell" data-close-menu>
+        <div class="bc-num">02</div>
+        <div class="bc-label">About</div>
+        <div class="bc-sub">Approach & skills</div>
+        <div class="bc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+      <a href="#testimonials" class="bento-cell" data-close-menu>
+        <div class="bc-num">03</div>
+        <div class="bc-label">Clients</div>
+        <div class="bc-sub">Kind words</div>
+        <div class="bc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+      <a href="#contact-section" class="bento-cell" data-close-menu>
+        <div class="bc-num">04</div>
+        <div class="bc-label">Contact</div>
+        <div class="bc-sub">Start a project</div>
+        <div class="bc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="bento-cell">
+        <div class="bc-num">05</div>
+        <div class="bc-label">LinkedIn</div>
+        <div class="bc-sub">Connect with me</div>
+        <div class="bc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+      <div
+        class="bento-cell"
+        style="
+          pointer-events: none;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <p
+          style="
+            font-size: 0.75rem;
+            color: #9a8e84;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+          "
+        >
+          Available for projects
+        </p>
+        <p
+          style="
+            font-size: 0.65rem;
+            color: #c0b8b0;
+            margin-top: 0.4rem;
+            letter-spacing: 0.08em;
+          "
+        >
+          Open to remote & global work
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28"
+    >
+      <!-- ── Hero ── -->
+      <section
+        class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 pb-24 items-center min-h-[86vh]"
+      >
+        <div class="max-w-2xl">
+          <span
+            class="inline-flex items-center gap-2 text-xs text-stone-400 tracking-widest uppercase mb-6"
+          >
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"
+            ></span>
+            Available for projects
+          </span>
+          <h1
+            class="text-5xl sm:text-6xl lg:text-7xl tracking-tight font-normal leading-[1.08] text-stone-800"
+            id="hero-title"
+          >
+            Design that speaks. Development that performs.
+          </h1>
+          <p
+            class="mt-8 text-lg sm:text-xl text-stone-500 font-light leading-relaxed max-w-lg"
+          >
+            I'm a Webflow developer and UI/UX designer turning bold ideas into
+            beautifully crafted, high-performing websites.
+          </p>
+
+          <div
+            class="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-8"
+          >
+            <!-- Cool morphing button -->
+            <a href="#projects" class="btn-morph">
+              <span class="bm-text">View My Work</span>
+              <span class="bm-icon"><svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+
+            <div class="flex items-center gap-4">
+              <div class="flex -space-x-3">
+                <img
+                  class="w-11 h-11 rounded-full border-2 border-[#F8F7F5] object-cover"
+                  src="Jake.png"
+                  alt="Jake Slacker"
+                />
+                <img
+                  class="w-11 h-11 rounded-full border-2 border-[#F8F7F5] object-cover"
+                  src="Cameron.png"
+                  alt="Cameron Young"
+                />
+                <img
+                  class="w-11 h-11 rounded-full border-2 border-[#F8F7F5] object-cover"
+                  src="declan.png"
+                  alt="Declan Flaherty"
+                />
+              </div>
+              <div class="text-sm font-light">
+                <div class="flex gap-0.5" style="color: var(--accent)">
+                  <iconify-icon
+                    icon="solar:star-bold"
+                    class="text-xs"
+                  ></iconify-icon>
+                  <iconify-icon
+                    icon="solar:star-bold"
+                    class="text-xs"
+                  ></iconify-icon>
+                  <iconify-icon
+                    icon="solar:star-bold"
+                    class="text-xs"
+                  ></iconify-icon>
+                  <iconify-icon
+                    icon="solar:star-bold"
+                    class="text-xs"
+                  ></iconify-icon>
+                  <iconify-icon
+                    icon="solar:star-bold"
+                    class="text-xs"
+                  ></iconify-icon>
+                </div>
+                <span class="text-stone-500 mt-1 block">5-star rated</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero visual – headshot -->
+        <div
+          class="relative h-[560px] lg:h-[720px] w-full rounded-[2rem] overflow-hidden bg-stone-100"
+        >
+          <img
+            src="download 1.png"
+            alt="Chloe Nixon"
+            class="w-full h-full object-cover object-center"
+          />
+
+          <!-- Floating badge – stack -->
+          <div
+            class="absolute top-8 left-8 bg-[#FAF9F8]/90 backdrop-blur-sm p-4 rounded-2xl shadow-sm border border-white/40"
+          >
+            <p class="text-xs text-stone-400 font-normal">Stack</p>
+            <p class="text-base font-normal tracking-tight mt-1">
+              Webflow · Figma · HTML/CSS/JS
+            </p>
+          </div>
+
+          <!-- Floating badge – location -->
+          <div
+            class="absolute bottom-8 right-8 bg-[#FAF9F8]/90 backdrop-blur-sm p-5 rounded-2xl shadow-sm border border-white/40 max-w-[210px]"
+          >
+            <p class="text-xs text-stone-400 font-normal">Currently in</p>
+            <p class="text-xl font-normal tracking-tight mt-1">
+              Barcelona, ES 🇪🇸
+            </p>
+            <p class="text-xs text-stone-400 mt-2 leading-relaxed">
+              Open to remote & global projects.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ── Marquee ── -->
+    <div
+      class="w-full border-y border-stone-200/60 bg-[#FAF9F8] py-10 overflow-hidden flex relative z-10"
+    >
+      <div class="flex whitespace-nowrap animate-marquee items-center">
+        <div
+          class="flex gap-14 items-center px-10 text-xs font-normal tracking-widest uppercase text-stone-400"
+        >
+          <span>Webflow</span><span class="text-stone-300">·</span>
+          <span>Figma</span><span class="text-stone-300">·</span>
+          <span>UI / UX Design</span><span class="text-stone-300">·</span>
+          <span>CMS Development</span><span class="text-stone-300">·</span>
+          <span>Responsive Design</span><span class="text-stone-300">·</span>
+          <span>SEO Optimisation</span><span class="text-stone-300">·</span>
+          <span>Animations</span><span class="text-stone-300">·</span>
+          <span>Template Customisation</span
+          ><span class="text-stone-300">·</span> <span>E-Commerce</span
+          ><span class="text-stone-300">·</span> <span>Brand Identity</span
+          ><span class="text-stone-300">·</span>
+          <!-- duplicate for seamless loop -->
+          <span>Webflow</span><span class="text-stone-300">·</span>
+          <span>Figma</span><span class="text-stone-300">·</span>
+          <span>UI / UX Design</span><span class="text-stone-300">·</span>
+          <span>CMS Development</span><span class="text-stone-300">·</span>
+          <span>Responsive Design</span><span class="text-stone-300">·</span>
+          <span>SEO Optimisation</span><span class="text-stone-300">·</span>
+          <span>Animations</span><span class="text-stone-300">·</span>
+          <span>Template Customisation</span
+          ><span class="text-stone-300">·</span> <span>E-Commerce</span
+          ><span class="text-stone-300">·</span> <span>Brand Identity</span
+          ><span class="text-stone-300">·</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Featured Projects ── -->
+    <section
+      id="projects"
+      class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32"
+    >
+      <div
+        class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-6"
+      >
+        <div>
+          <span
+            class="text-xs font-normal text-stone-400 tracking-widest uppercase flex items-center gap-2 mb-4"
+          >
+            <span class="w-1.5 h-1.5 rounded-full accent-dot"></span> 01 ·
+            Selected Work
+          </span>
+          <h2
+            class="text-3xl sm:text-4xl tracking-tight font-normal text-stone-900"
+          >
+            Featured Projects
+          </h2>
+        </div>
+        <div class="flex gap-3">
+          <button
+            id="prev-card"
+            class="w-12 h-12 rounded-full border border-stone-200 flex items-center justify-center hover:border-stone-400 transition-colors"
+          >
+            <iconify-icon
+              icon="solar:arrow-left-linear"
+              class="text-xl"
+            ></iconify-icon>
+          </button>
+          <button
+            id="next-card"
+            class="w-12 h-12 rounded-full border border-stone-200 flex items-center justify-center hover:border-stone-400 transition-colors"
+          >
+            <iconify-icon
+              icon="solar:arrow-right-linear"
+              class="text-xl"
+            ></iconify-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="relative h-[860px] w-full card-rotator rounded-[2rem]">
+        <div class="absolute inset-0 overflow-hidden rounded-[2rem]">
+          <!-- Card 1 – Turba Media -->
+          <div class="absolute inset-0 card-slide card-active" data-index="0">
+            <div
+              class="w-full h-full bg-[#FAF9F8] rounded-[2rem] border border-stone-200/60 overflow-hidden flex flex-col shadow-sm"
+            >
+              <div class="browser-bar">
+                <div class="browser-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="browser-url">turbamedia.com.au</div>
+              </div>
+              <div
+                class="card-img-wrap relative overflow-hidden"
+                style="height: 688px; flex-shrink: 0"
+              >
+                <img src="TurbaMedia.png" alt="Turba Media" class="w-full h-full object-cover object-top" />
+              </div>
+              <div class="flex-1 px-8 py-3 flex items-center justify-between">
+                <div>
+                  <h3 class="text-xl font-normal tracking-tight text-stone-900">
+                    Turba Media
+                  </h3>
+                  <p class="text-stone-400 text-sm mt-1 font-light">
+                    Template Customisation · CMS
+                  </p>
+                </div>
+                <a
+                  href="#"
+                  class="btn-morph"
+                  style="padding: 10px 22px; font-size: 13px"
+                >
+                  <span class="bm-text">View</span>
+                  <span class="bm-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 – GTC -->
+          <div class="absolute inset-0 card-slide card-next" data-index="1">
+            <div
+              class="w-full h-full bg-[#FAF9F8] rounded-[2rem] border border-stone-200/60 overflow-hidden flex flex-col shadow-sm"
+            >
+              <div class="browser-bar">
+                <div class="browser-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="browser-url">globaltaxconsulting.com.au</div>
+              </div>
+              <div
+                class="card-img-wrap relative overflow-hidden"
+                style="height: 688px; flex-shrink: 0"
+              >
+                <img src="GTC.png" alt="Global Tax Consulting" class="w-full h-full object-cover object-top" />
+              </div>
+              <div class="flex-1 px-8 py-3 flex items-center justify-between">
+                <div>
+                  <h3 class="text-xl font-normal tracking-tight text-stone-900">
+                    Global Tax Consulting
+                  </h3>
+                  <p class="text-stone-400 text-sm mt-1 font-light">
+                    Webflow Development · SEO
+                  </p>
+                </div>
+                <a
+                  href="#"
+                  class="btn-morph"
+                  style="padding: 10px 22px; font-size: 13px"
+                >
+                  <span class="bm-text">View</span>
+                  <span class="bm-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 – Parts Portal -->
+          <div class="absolute inset-0 card-slide card-hidden" data-index="2">
+            <div
+              class="w-full h-full bg-[#FAF9F8] rounded-[2rem] border border-stone-200/60 overflow-hidden flex flex-col shadow-sm"
+            >
+              <div class="browser-bar">
+                <div class="browser-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="browser-url">partsportal.com.au</div>
+              </div>
+              <div
+                class="card-img-wrap relative overflow-hidden"
+                style="height: 688px; flex-shrink: 0"
+              >
+                <img src="PartsPortal.png" alt="Parts Portal" class="w-full h-full object-cover object-top" />
+              </div>
+              <div class="flex-1 px-8 py-3 flex items-center justify-between">
+                <div>
+                  <h3 class="text-xl font-normal tracking-tight text-stone-900">
+                    Parts Portal
+                  </h3>
+                  <p class="text-stone-400 text-sm mt-1 font-light">
+                    UI Design · Webflow Development
+                  </p>
+                </div>
+                <a
+                  href="#"
+                  class="btn-morph"
+                  style="padding: 10px 22px; font-size: 13px"
+                >
+                  <span class="bm-text">View</span>
+                  <span class="bm-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 – Slacker Apps -->
+          <div class="absolute inset-0 card-slide card-hidden" data-index="3">
+            <div
+              class="w-full h-full bg-[#FAF9F8] rounded-[2rem] border border-stone-200/60 overflow-hidden flex flex-col shadow-sm"
+            >
+              <div class="browser-bar">
+                <div class="browser-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="browser-url">slackerapps.io</div>
+              </div>
+              <div
+                class="card-img-wrap relative overflow-hidden"
+                style="height: 688px; flex-shrink: 0"
+              >
+                <img src="SlackerApps.png" alt="Slacker Apps" class="w-full h-full object-cover object-top" />
+              </div>
+              <div class="flex-1 px-8 py-3 flex items-center justify-between">
+                <div>
+                  <h3 class="text-xl font-normal tracking-tight text-stone-900">
+                    Slacker Apps
+                  </h3>
+                  <p class="text-stone-400 text-sm mt-1 font-light">
+                    UI / UX Design · Development
+                  </p>
+                </div>
+                <a
+                  href="#"
+                  class="btn-morph"
+                  style="padding: 10px 22px; font-size: 13px"
+                >
+                  <span class="bm-text">View</span>
+                  <span class="bm-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end inner overflow wrapper -->
+      </div>
+      <!-- end outer card-rotator -->
+
+      <!-- Dots -->
+      <div class="flex justify-center gap-2 mt-6">
+        <button
+          class="card-dot w-2 h-2 rounded-full transition-all"
+          style="background: var(--accent)"
+          data-i="0"
+        ></button>
+        <button
+          class="card-dot w-2 h-2 rounded-full bg-stone-300 transition-all"
+          data-i="1"
+        ></button>
+        <button
+          class="card-dot w-2 h-2 rounded-full bg-stone-300 transition-all"
+          data-i="2"
+        ></button>
+        <button
+          class="card-dot w-2 h-2 rounded-full bg-stone-300 transition-all"
+          data-i="3"
+        ></button>
+      </div>
+    </section>
+
+    <!-- ── About ── -->
+    <section
+      id="about"
+      class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 bg-[#FAF9F8] rounded-[3rem] shadow-sm border border-stone-200/60"
+    >
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <div class="lg:col-span-5 flex flex-col justify-between">
+          <span
+            class="text-xs font-normal text-stone-400 tracking-widest uppercase flex items-center gap-2 mb-8"
+          >
+            <span class="w-1.5 h-1.5 rounded-full accent-dot"></span> 02 ·
+            Approach
+          </span>
+          <p
+            id="about-text"
+            class="text-2xl sm:text-3xl lg:text-4xl font-light leading-[1.3] tracking-tight text-stone-900"
+          >
+            Good design isn't decoration — it's clarity. I combine sharp visual
+            thinking with clean Webflow builds to create sites that convert,
+            impress, and actually get used.
+          </p>
+        </div>
+
+        <div
+          class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 pt-12 lg:pt-0"
+        >
+          <div
+            class="bg-stone-50 p-8 rounded-3xl border border-stone-200/60 flex flex-col items-start hover:bg-stone-100/60 transition-colors"
+          >
+            <div
+              class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border border-stone-100 bg-white shadow-sm"
+              style="color: var(--accent)"
+            >
+              <iconify-icon
+                icon="solar:pen-new-square-linear"
+                class="text-xl"
+              ></iconify-icon>
+            </div>
+            <h4 class="text-xl font-normal tracking-tight mb-3">
+              Design-First
+            </h4>
+            <p class="text-base text-stone-500 font-light leading-relaxed">
+              Every project starts in Figma — crafting layouts that are
+              intentional, on-brand, and built to convert before a single line
+              of code is written.
+            </p>
+          </div>
+
+          <div
+            class="bg-stone-50 p-8 rounded-3xl border border-stone-200/60 flex flex-col items-start hover:bg-stone-100/60 transition-colors sm:translate-y-8"
+          >
+            <div
+              class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border border-stone-100 bg-white shadow-sm"
+              style="color: var(--accent)"
+            >
+              <iconify-icon
+                icon="solar:code-linear"
+                class="text-xl"
+              ></iconify-icon>
+            </div>
+            <h4 class="text-xl font-normal tracking-tight mb-3">
+              Pixel-Perfect Builds
+            </h4>
+            <p class="text-base text-stone-500 font-light leading-relaxed">
+              Webflow development that matches the design spec precisely —
+              responsive across all devices, optimised for speed, and easy for
+              clients to manage.
+            </p>
+          </div>
+
+          <div
+            class="bg-stone-50 p-8 rounded-3xl border border-stone-200/60 flex flex-col items-start hover:bg-stone-100/60 transition-colors"
+          >
+            <div
+              class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border border-stone-100 bg-white shadow-sm"
+              style="color: var(--accent)"
+            >
+              <iconify-icon
+                icon="solar:chart-2-linear"
+                class="text-xl"
+              ></iconify-icon>
+            </div>
+            <h4 class="text-xl font-normal tracking-tight mb-3">
+              SEO & Performance
+            </h4>
+            <p class="text-base text-stone-500 font-light leading-relaxed">
+              Sites built with clean semantics, fast load times, and on-page SEO
+              baked in — so your work gets found and keeps visitors engaged.
+            </p>
+          </div>
+
+          <div
+            class="bg-stone-50 p-8 rounded-3xl border border-stone-200/60 flex flex-col items-start hover:bg-stone-100/60 transition-colors sm:translate-y-8"
+          >
+            <div
+              class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 border border-stone-100 bg-white shadow-sm"
+              style="color: var(--accent)"
+            >
+              <iconify-icon
+                icon="solar:programming-linear"
+                class="text-xl"
+              ></iconify-icon>
+            </div>
+            <h4 class="text-xl font-normal tracking-tight mb-3">
+              Custom Front-End Development
+            </h4>
+            <p class="text-base text-stone-500 font-light leading-relaxed">
+              Hand-coded in HTML, CSS, and JavaScript for projects that need
+              bespoke interactions, custom animations, or full control beyond a
+              no-code platform.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Testimonials ── -->
+    <section
+      id="testimonials"
+      class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32"
+    >
+      <span
+        class="text-xs font-normal text-stone-400 tracking-widest uppercase flex items-center gap-2 mb-4"
+      >
+        <span class="w-1.5 h-1.5 rounded-full accent-dot"></span> 03 · Kind
+        Words
+      </span>
+      <h2
+        class="text-3xl sm:text-4xl tracking-tight font-normal text-stone-900 mb-12"
+      >
+        Client Experiences
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Jake Slacker -->
+        <div
+          class="bg-[#FAF9F8] p-8 rounded-3xl border border-stone-200/60 flex flex-col justify-between hover:bg-stone-50/80 transition-colors"
+        >
+          <div>
+            <div class="flex gap-0.5 mb-6" style="color: var(--accent)">
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+            </div>
+            <p class="text-base text-stone-600 font-light leading-relaxed mb-8">
+              "Her work was of high quality, she was swift with her updates and
+              communication, she was flexible and solution orientated and the
+              website was successfully completed inline with our vision on time,
+              on budget, with zero friction. Fully deserving of a bonus and we
+              hope to work with her again."
+            </p>
+          </div>
+          <div class="flex items-center gap-4">
+            <img
+              class="w-12 h-12 rounded-full border border-stone-200 object-cover flex-shrink-0"
+              src="Jake.png"
+              alt="Jake Slacker"
+            />
+            <div>
+              <p class="text-sm font-normal text-stone-900">Jake Slacker</p>
+              <p class="text-xs font-light text-stone-500 mt-0.5">
+                CEO, Slacker Apps
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cameron Young -->
+        <div
+          class="bg-[#FAF9F8] p-8 rounded-3xl border border-stone-200/60 flex flex-col justify-between hover:bg-stone-50/80 transition-colors"
+        >
+          <div>
+            <div class="flex gap-0.5 mb-6" style="color: var(--accent)">
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+            </div>
+            <p class="text-base text-stone-600 font-light leading-relaxed mb-8">
+              "Chloe is an absolutely outstanding graphic artist. From the first
+              interaction, it was clear they immediately understood the brief —
+              not just the words, but the intent behind them. The work was
+              creative, polished, and perfectly aligned with the brand, with a
+              level of thought and restraint that's hard to find.<br /><br />Communication
+              was fast, clear, and professional. Feedback was handled
+              effortlessly and revisions were turned around quickly, often ahead
+              of schedule. What really sets them apart is their ability to
+              elevate ideas and turn something rough into something sharp and
+              cohesive.<br /><br />If you want a designer who feels more like a
+              creative partner than a supplier, this is someone I'd recommend
+              without hesitation."
+            </p>
+          </div>
+          <div class="flex items-center gap-4">
+            <img
+              class="w-12 h-12 rounded-full border border-stone-200 object-cover flex-shrink-0"
+              src="Cameron.png"
+              alt="Cameron Young"
+            />
+            <div>
+              <p class="text-sm font-normal text-stone-900">Cameron Young</p>
+              <p class="text-xs font-light text-stone-500 mt-0.5">
+                CEO, National Digital
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Declan Flaherty -->
+        <div
+          class="bg-[#FAF9F8] p-8 rounded-3xl border border-stone-200/60 flex flex-col justify-between hover:bg-stone-50/80 transition-colors"
+        >
+          <div>
+            <div class="flex gap-0.5 mb-6" style="color: var(--accent)">
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+            </div>
+            <p class="text-base text-stone-600 font-light leading-relaxed mb-8">
+              "Chloe was excellent to work with — very proficient in Webflow and
+              great prompt communication!"
+            </p>
+          </div>
+          <div class="flex items-center gap-4">
+            <img
+              class="w-12 h-12 rounded-full border border-stone-200 object-cover flex-shrink-0"
+              src="declan.png"
+              alt="Declan Flaherty"
+            />
+            <div>
+              <p class="text-sm font-normal text-stone-900">Declan Flaherty</p>
+              <p class="text-xs font-light text-stone-500 mt-0.5">
+                CEO, Soone Agency
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marc Goodwin -->
+        <div
+          class="bg-[#FAF9F8] p-8 rounded-3xl border border-stone-200/60 flex flex-col justify-between hover:bg-stone-50/80 transition-colors"
+        >
+          <div>
+            <div class="flex gap-0.5 mb-6" style="color: var(--accent)">
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+            </div>
+            <p class="text-base text-stone-600 font-light leading-relaxed mb-8">
+              "Well done Chloe! Great working with you — you were very
+              responsive and built a quality product as per the design."
+            </p>
+          </div>
+          <div class="flex items-center gap-4">
+            <!-- Replace src with real photo when available -->
+            <div
+              class="w-12 h-12 rounded-full flex items-center justify-center text-sm font-normal text-white flex-shrink-0"
+              style="background: #6b6560"
+            >
+              MG
+            </div>
+            <div>
+              <p class="text-sm font-normal text-stone-900">Marc Goodwin</p>
+              <p class="text-xs font-light text-stone-500 mt-0.5">
+                Growth & Marketing, Chilled Creative
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Matt Bonner -->
+        <div
+          class="bg-[#FAF9F8] p-8 rounded-3xl border border-stone-200/60 flex flex-col justify-between hover:bg-stone-50/80 transition-colors"
+        >
+          <div>
+            <div class="flex gap-0.5 mb-6" style="color: var(--accent)">
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+            </div>
+            <p class="text-base text-stone-600 font-light leading-relaxed mb-8">
+              "Turba Media engaged Chloe to help build our website on Webflow.
+              Chloe was professional, available, easy to work with and has a
+              lovely demeanour. The quality of her work was excellent. I will
+              happily recommend her."
+            </p>
+          </div>
+          <div class="flex items-center gap-4">
+            <img
+              class="w-12 h-12 rounded-full border border-stone-200 object-cover flex-shrink-0"
+              src="https://cdn.prod.website-files.com/681c3a08ddc0ffa3d3eace22/683fc3fccf7d04459bef8345_Screenshot%202025-06-04%20at%2011.56.13%E2%80%AFAM-min.png"
+              alt="Matt Bonner"
+            />
+            <div>
+              <p class="text-sm font-normal text-stone-900">Matt Bonner</p>
+              <p class="text-xs font-light text-stone-500 mt-0.5">
+                Director & Co-Founder, Turba Media
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Micky Dollimore -->
+        <div
+          class="bg-[#FAF9F8] p-8 rounded-3xl border border-stone-200/60 flex flex-col justify-between hover:bg-stone-50/80 transition-colors"
+        >
+          <div>
+            <div class="flex gap-0.5 mb-6" style="color: var(--accent)">
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+            </div>
+            <p class="text-base text-stone-600 font-light leading-relaxed mb-8">
+              "Working with Chloe has been an absolute pleasure. Her ability to
+              combine stunning visual design with clean, efficient code has
+              transformed our digital presence. Her attention to detail and
+              understanding of modern design principles have resulted in a
+              website that perfectly represents our brand while providing an
+              exceptional user experience."
+            </p>
+          </div>
+          <div class="flex items-center gap-4">
+            <img
+              class="w-12 h-12 rounded-full border border-stone-200 object-cover flex-shrink-0"
+              src="https://cdn.prod.website-files.com/681c3a08ddc0ffa3d3eace22/683fc5f576d37ec003d904df_DSC00124-min.avif"
+              alt="Micky Dollimore"
+            />
+            <div>
+              <p class="text-sm font-normal text-stone-900">Micky Dollimore</p>
+              <p class="text-xs font-light text-stone-500 mt-0.5">
+                Co-Founder, HVDC World
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Michelle Williams -->
+        <div
+          class="bg-[#FAF9F8] p-8 rounded-3xl border border-stone-200/60 flex flex-col justify-between hover:bg-stone-50/80 transition-colors"
+        >
+          <div>
+            <div class="flex gap-0.5 mb-6" style="color: var(--accent)">
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+            </div>
+            <p class="text-base text-stone-600 font-light leading-relaxed mb-8">
+              "I've worked with Chloe Nixon on building The Remix website, and
+              she's been the most reliable and technically capable Webflow
+              developer I've worked with. She brings a deep understanding of
+              Webflow, from CMS structuring to resolving finicky bugs and
+              implementing custom interactions. She's fast, dependable, and
+              communicates clearly, even when working with complex or evolving
+              design briefs. If you're looking for someone who can bring order
+              to chaos and make the most of what Webflow can do, she's a
+              fantastic asset."
+            </p>
+          </div>
+          <div class="flex items-center gap-4">
+            <img
+              class="w-12 h-12 rounded-full border border-stone-200 object-cover flex-shrink-0"
+              src="https://cdn.prod.website-files.com/681c3a08ddc0ffa3d3eace22/6843d37c25469055be00aa23_michelle.avif"
+              alt="Michelle Williams"
+            />
+            <div>
+              <p class="text-sm font-normal text-stone-900">
+                Michelle Williams
+              </p>
+              <p class="text-xs font-light text-stone-500 mt-0.5">
+                Founder, The Remix
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Emma Mcdermott -->
+        <div
+          class="bg-[#FAF9F8] p-8 rounded-3xl border border-stone-200/60 flex flex-col justify-between hover:bg-stone-50/80 transition-colors"
+        >
+          <div>
+            <div class="flex gap-0.5 mb-6" style="color: var(--accent)">
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+              <iconify-icon
+                icon="solar:star-bold"
+                class="text-sm"
+              ></iconify-icon>
+            </div>
+            <p class="text-base text-stone-600 font-light leading-relaxed mb-8">
+              "Chloe is an exceptional Webflow developer. She implemented
+              complex Figma designs pixel by pixel. She is detail orientated,
+              easy to work with, super responsive and delivers projects on time.
+              If you are looking for an expert Webflow developer, look no
+              further!"
+            </p>
+          </div>
+          <div class="flex items-center gap-4">
+            <img
+              class="w-12 h-12 rounded-full border border-stone-200 object-cover flex-shrink-0"
+              src="https://cdn.prod.website-files.com/681c3a08ddc0ffa3d3eace22/68cc39b35f19ae0b85afa944_start.png.avif"
+              alt="Emma Mcdermott"
+            />
+            <div>
+              <p class="text-sm font-normal text-stone-900">Emma Mcdermott</p>
+              <p class="text-xs font-light text-stone-500 mt-0.5">
+                Founder, Global Tax Consulting
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA Banner ── -->
+    <section
+      id="cta-section"
+      class="relative z-10 w-full max-w-[95%] mx-auto mb-24 rounded-[3rem] overflow-hidden h-[60vh] min-h-[500px] flex items-center justify-center text-center"
+      style="background: #110e0b"
+    >
+      <!-- Floating ember particles -->
+      <div
+        class="absolute inset-0 pointer-events-none overflow-hidden"
+        style="z-index: 5"
+      >
+        <div
+          class="cta-ember"
+          style="
+            left: 8%;
+            animation-duration: 11s;
+            animation-delay: 0s;
+            width: 2px;
+            height: 2px;
+            opacity: 0.5;
+          "
+        ></div>
+        <div
+          class="cta-ember"
+          style="left: 18%; animation-duration: 9s; animation-delay: 2.2s"
+        ></div>
+        <div
+          class="cta-ember"
+          style="
+            left: 29%;
+            animation-duration: 13s;
+            animation-delay: 0.7s;
+            width: 2px;
+            height: 2px;
+          "
+        ></div>
+        <div
+          class="cta-ember"
+          style="
+            left: 38%;
+            animation-duration: 10s;
+            animation-delay: 4.5s;
+            opacity: 0.5;
+          "
+        ></div>
+        <div
+          class="cta-ember"
+          style="
+            left: 50%;
+            animation-duration: 12s;
+            animation-delay: 1.4s;
+            width: 4px;
+            height: 4px;
+            filter: blur(2px);
+          "
+        ></div>
+        <div
+          class="cta-ember"
+          style="
+            left: 60%;
+            animation-duration: 8.5s;
+            animation-delay: 5.8s;
+            width: 2px;
+            height: 2px;
+          "
+        ></div>
+        <div
+          class="cta-ember"
+          style="left: 70%; animation-duration: 11s; animation-delay: 3.1s"
+        ></div>
+        <div
+          class="cta-ember"
+          style="
+            left: 79%;
+            animation-duration: 14s;
+            animation-delay: 6.5s;
+            width: 2px;
+            height: 2px;
+            opacity: 0.45;
+          "
+        ></div>
+        <div
+          class="cta-ember"
+          style="left: 88%; animation-duration: 9.5s; animation-delay: 0.3s"
+        ></div>
+        <div
+          class="cta-ember"
+          style="
+            left: 94%;
+            animation-duration: 12s;
+            animation-delay: 7.2s;
+            width: 2px;
+            height: 2px;
+          "
+        ></div>
+        <div
+          class="cta-ember"
+          style="
+            left: 44%;
+            animation-duration: 10s;
+            animation-delay: 8.5s;
+            opacity: 0.6;
+          "
+        ></div>
+        <div
+          class="cta-ember"
+          style="
+            left: 23%;
+            animation-duration: 13s;
+            animation-delay: 9.3s;
+            width: 4px;
+            height: 4px;
+            filter: blur(2px);
+          "
+        ></div>
+      </div>
+
+      <!-- Animated blobs — left and right edge glows -->
+      <div class="absolute inset-0 pointer-events-none" style="z-index: 1">
+        <!-- Left glow — top: calc(50% - 250px) centres the 500px blob without conflicting with animation transform -->
+        <div
+          style="
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(200, 96, 42, 0.55);
+            border-radius: 50%;
+            filter: blur(90px);
+            top: calc(50% - 250px);
+            left: -180px;
+            animation: blobPulse1 15s ease-in-out infinite;
+          "
+        ></div>
+        <!-- Right glow -->
+        <div
+          style="
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: rgba(200, 96, 42, 0.5);
+            border-radius: 50%;
+            filter: blur(90px);
+            top: calc(50% - 250px);
+            right: -180px;
+            animation: blobPulse2 18s ease-in-out infinite;
+          "
+        ></div>
+      </div>
+
+      <!-- Centre vignette to keep text readable -->
+      <div
+        class="absolute inset-0 pointer-events-none"
+        style="
+          z-index: 2;
+          background: radial-gradient(
+            ellipse 55% 80% at 50% 50%,
+            transparent 0%,
+            rgba(17, 14, 11, 0.82) 100%
+          );
+        "
+      ></div>
+
+      <div class="relative flex flex-col items-center px-4" style="z-index: 10">
+        <span
+          class="text-xs font-normal tracking-widest uppercase flex items-center gap-2 mb-6"
+          style="color: rgba(200, 96, 42, 0.8)"
+        >
+          <span
+            class="w-1.5 h-1.5 rounded-full"
+            style="background: var(--accent)"
+          ></span>
+          04 · Let's Build
+        </span>
+        <h2
+          class="text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-white mb-10 max-w-3xl leading-[1.1]"
+        >
+          Ready to make something great?
+        </h2>
+        <a
+          href="#contact-section"
+          class="btn-morph"
+          style="background: rgba(255, 255, 255, 0.95); color: #1c1a17"
+        >
+          <span class="bm-text" style="color: #1c1a17">Start a Project</span>
+          <span class="bm-icon" style="color: #1c1a17"><svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── Contact ── -->
+    <section
+      id="contact-section"
+      class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24"
+    >
+      <div
+        class="bg-[#FAF9F8] rounded-[3rem] shadow-sm border border-stone-200/60 overflow-hidden flex flex-col lg:flex-row"
+      >
+        <div
+          class="lg:w-5/12 p-10 sm:p-16 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-stone-200/60"
+        >
+          <div>
+            <span
+              class="text-xs font-normal text-stone-400 tracking-widest uppercase flex items-center gap-2 mb-6"
+            >
+              <span class="w-1.5 h-1.5 rounded-full accent-dot"></span> 05 ·
+              Contact
+            </span>
+            <h2
+              class="text-3xl sm:text-4xl tracking-tight font-normal text-stone-900 mb-6"
+            >
+              Let's start a conversation.
+            </h2>
+            <p
+              class="text-base text-stone-500 font-light leading-relaxed mb-12"
+            >
+              Have a project in mind or want to explore what we could build
+              together? I'd love to hear from you.
+            </p>
+          </div>
+          <div class="space-y-6 text-sm font-light text-stone-600">
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 rounded-full flex items-center justify-center"
+                style="background: rgba(200, 96, 42, 0.1); color: var(--accent)"
+              >
+                <iconify-icon
+                  icon="solar:map-point-linear"
+                  class="text-lg"
+                ></iconify-icon>
+              </div>
+              <span>Available worldwide — remote friendly</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 rounded-full flex items-center justify-center"
+                style="background: rgba(200, 96, 42, 0.1); color: var(--accent)"
+              >
+                <iconify-icon
+                  icon="solar:letter-linear"
+                  class="text-lg"
+                ></iconify-icon>
+              </div>
+              <span>hello@chloenixon.com</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="w-10 h-10 rounded-full flex items-center justify-center"
+                style="background: rgba(200, 96, 42, 0.1); color: var(--accent)"
+              >
+                <iconify-icon
+                  icon="solar:link-linear"
+                  class="text-lg"
+                ></iconify-icon>
+              </div>
+              <span>chloenixon.com</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:w-7/12 p-10 sm:p-16 bg-white">
+          <form
+            action="https://formspree.io/f/xwvrwobd"
+            method="POST"
+            class="space-y-6"
+          >
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="flex flex-col gap-2">
+                <label class="text-xs font-normal text-stone-500"
+                  >First Name</label
+                >
+                <input
+                  type="text"
+                  name="first_name"
+                  class="bg-transparent border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none transition-all text-stone-900"
+                  placeholder="Jane"
+                />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-xs font-normal text-stone-500"
+                  >Last Name</label
+                >
+                <input
+                  type="text"
+                  name="last_name"
+                  class="bg-transparent border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none transition-all text-stone-900"
+                  placeholder="Doe"
+                />
+              </div>
+            </div>
+            <div class="flex flex-col gap-2">
+              <label class="text-xs font-normal text-stone-500"
+                >Email Address</label
+              >
+              <input
+                type="email"
+                name="email"
+                class="bg-transparent border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none transition-all text-stone-900"
+                placeholder="jane@example.com"
+              />
+            </div>
+            <div class="flex flex-col gap-2">
+              <label class="text-xs font-normal text-stone-500"
+                >Project Type</label
+              >
+              <div class="relative">
+                <select
+                  name="project_type"
+                  class="w-full bg-transparent border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none transition-all text-stone-900 appearance-none"
+                >
+                  <option value="" disabled selected>
+                    Select an option...
+                  </option>
+                  <option value="new">New website</option>
+                  <option value="redesign">Website redesign</option>
+                  <option value="template">Template customisation</option>
+                  <option value="cms">CMS / SEO work</option>
+                  <option value="other">Other</option>
+                </select>
+                <div
+                  class="absolute inset-y-0 right-4 flex items-center pointer-events-none"
+                >
+                  <iconify-icon
+                    icon="solar:alt-arrow-down-linear"
+                    class="text-stone-400"
+                  ></iconify-icon>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col gap-2">
+              <label class="text-xs font-normal text-stone-500">Message</label>
+              <textarea
+                name="message"
+                rows="4"
+                class="bg-transparent border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none transition-all text-stone-900 resize-none"
+                placeholder="Tell me a bit about your project..."
+              ></textarea>
+            </div>
+            <button type="submit" class="btn-morph mt-4 inline-flex">
+              <span class="bm-text">Send Message</span>
+              <span class="bm-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer
+      class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col sm:flex-row justify-between items-center text-sm font-light text-stone-500 border-t border-stone-200/60 mt-12"
+    >
+      <p>© 2025 Chloe Nixon. All rights reserved.</p>
+      <div class="flex gap-6 mt-4 sm:mt-0">
+        <a href="#" class="hover:text-stone-900 transition-colors">LinkedIn</a>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ── Custom cursor ──────────────────────────────────────
+        const cursor = document.getElementById("cursor");
+        const cursorRing = document.getElementById("cursor-ring");
+        let mx = 0,
+          my = 0,
+          rx = 0,
+          ry = 0;
+
+        window.addEventListener("mousemove", (e) => {
+          mx = e.clientX;
+          my = e.clientY;
+        });
+
+        function animCursor() {
+          rx += (mx - rx) * 0.12;
+          ry += (my - ry) * 0.12;
+          cursor.style.left = mx + "px";
+          cursor.style.top = my + "px";
+          cursorRing.style.left = rx + "px";
+          cursorRing.style.top = ry + "px";
+          requestAnimationFrame(animCursor);
+        }
+        animCursor();
+
+        document
+          .querySelectorAll(
+            "a, button, [role='button'], .card-dot, .bento-cell",
+          )
+          .forEach((el) => {
+            el.addEventListener("mouseenter", () =>
+              document.body.classList.add("cursor-hover"),
+            );
+            el.addEventListener("mouseleave", () =>
+              document.body.classList.remove("cursor-hover"),
+            );
+          });
+
+        // ── Nav scroll behaviour ───────────────────────────────
+        const nav = document.getElementById("main-nav");
+        window.addEventListener(
+          "scroll",
+          () => {
+            nav.classList.toggle("nav-scrolled", window.scrollY > 60);
+          },
+          { passive: true },
+        );
+
+        // ── Bento menu ─────────────────────────────────────────
+        const toggle = document.getElementById("menuToggle");
+        const bentoMenu = document.getElementById("bento-menu");
+
+        toggle.addEventListener("click", () => {
+          const isOpen = bentoMenu.classList.toggle("active");
+          document.body.classList.toggle("menu-open", isOpen);
+        });
+        document.querySelectorAll("[data-close-menu]").forEach((el) => {
+          el.addEventListener("click", () => {
+            bentoMenu.classList.remove("active");
+            document.body.classList.remove("menu-open");
+          });
+        });
+
+        // ── Hero title animation ───────────────────────────────
+        const heroTitle = document.getElementById("hero-title");
+        if (heroTitle) {
+          const text = heroTitle.textContent.trim();
+          heroTitle.innerHTML = "";
+          text.split(/\s+/).forEach((word, index, arr) => {
+            const ws = document.createElement("span");
+            ws.className = "inline-block whitespace-nowrap";
+            word.split("").forEach((char) => {
+              const o = document.createElement("span");
+              o.className =
+                "inline-block overflow-hidden align-bottom pb-1 -mb-1";
+              const i = document.createElement("span");
+              i.className = "inline-block translate-y-[120%] hero-char";
+              i.textContent = char;
+              o.appendChild(i);
+              ws.appendChild(o);
+            });
+            heroTitle.appendChild(ws);
+            if (index < arr.length - 1)
+              heroTitle.appendChild(document.createTextNode(" "));
+          });
+          gsap.to(".hero-char", {
+            y: "0%",
+            stagger: 0.02,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.2,
+          });
+        }
+
+        // ── About text reveal ──────────────────────────────────
+        const aboutText = document.getElementById("about-text");
+        if (aboutText) {
+          const words = aboutText.textContent.trim().split(/\s+/);
+          aboutText.innerHTML = "";
+          words.forEach((word) => {
+            const o = document.createElement("span");
+            o.className =
+              "inline-block overflow-hidden align-bottom pb-2 -mb-2 mr-2";
+            const i = document.createElement("span");
+            i.className = "inline-block translate-y-[120%] about-word";
+            i.textContent = word;
+            o.appendChild(i);
+            aboutText.appendChild(o);
+          });
+          gsap.to(".about-word", {
+            scrollTrigger: { trigger: aboutText, start: "top 85%" },
+            y: "0%",
+            stagger: 0.015,
+            duration: 0.8,
+            ease: "power3.out",
+          });
+        }
+
+        // ── Card carousel ──────────────────────────────────────
+        const cards = Array.from(document.querySelectorAll(".card-slide"));
+        const dots = Array.from(document.querySelectorAll(".card-dot"));
+        const btnNext = document.getElementById("next-card");
+        const btnPrev = document.getElementById("prev-card");
+        let current = 0;
+        const accentColor = "#c8602a";
+
+        function updateCards() {
+          cards.forEach((card, i) => {
+            card.className = "absolute inset-0 card-slide";
+            if (i === current) card.classList.add("card-active");
+            else if (i === (current + 1) % cards.length)
+              card.classList.add("card-next");
+            else card.classList.add("card-hidden");
+          });
+          dots.forEach((d, i) => {
+            d.style.background = i === current ? accentColor : "#d6d3d1";
+          });
+        }
+
+        if (btnNext)
+          btnNext.addEventListener("click", () => {
+            current = (current + 1) % cards.length;
+            updateCards();
+          });
+        if (btnPrev)
+          btnPrev.addEventListener("click", () => {
+            current = (current - 1 + cards.length) % cards.length;
+            updateCards();
+          });
+        dots.forEach((d) =>
+          d.addEventListener("click", () => {
+            current = parseInt(d.dataset.i);
+            updateCards();
+          }),
+        );
+      });
+    </script>
+  </body>
+</html>
+`
