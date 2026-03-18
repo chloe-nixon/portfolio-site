@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Webflow Developer Portfolio</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+      :root {
+        --bg-color: #f6f6f6;
+        --text-main: #111111;
+        --text-light: #555555;
+        --btn-dark: #121415;
+        --lime-green: #dcf542;
+        --olive-green: #3a4020;
+        --card-green: #e2ecc8;
+        --card-purple: #e0e5ff;
+        --radius-lg: 32px;
+        --radius-md: 20px;
+        --radius-sm: 12px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        line-height: 1.5;
+        padding: 2vw;
+        overflow-x: hidden;
+      }
+
+      section {
+        margin-bottom: 8vw;
+        background: #ffffff;
+        border-radius: var(--radius-lg);
+        padding: 4vw;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+      }
+
+      h1 {
+        font-size: 5vw;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        margin-bottom: 1.5rem;
+      }
+      h2 {
+        font-size: 3vw;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        margin-bottom: 1rem;
+      }
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+      p {
+        color: var(--text-light);
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+      }
+
+      .btn {
+        display: inline-block;
+        background: var(--btn-dark);
+        color: #fff;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+        border: none;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: var(--text-light);
+      }
+      .btn-outline {
+        background: transparent;
+        border: 1px solid #ddd;
+        color: var(--text-main);
+      }
+
+      /* --- HERO SECTION --- */
+      .hero {
+        display: flex;
+        gap: 4vw;
+        position: relative;
+        /* INCREASED HEIGHT HERE */
+        min-height: 95vh;
+        padding-bottom: 2vw;
+      }
+      .hero-left {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+      }
+      .hero-right {
+        flex: 1;
+        background: #e8ecef;
+        border-radius: var(--radius-lg);
+        position: relative;
+        background-image: url("https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop");
+        background-size: cover;
+        background-position: center;
+      }
+      .social-bar {
+        position: absolute;
+        right: -2vw;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background: #fff;
+        padding: 15px 10px;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        z-index: 10;
+      }
+      .social-bar a {
+        text-decoration: none;
+        color: #111;
+        font-weight: bold;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #f5f5f5;
+      }
+
+      /* --- HERO MARQUEE --- */
+      .marquee-wrapper {
+        margin-top: auto;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 3rem;
+        /* Fade edges for aesthetic effect */
+        mask-image: linear-gradient(
+          to right,
+          transparent,
+          black 5%,
+          black 95%,
+          transparent
+        );
+        -webkit-mask-image: linear-gradient(
+          to right,
+          transparent,
+          black 10%,
+          black 90%,
+          transparent
+        );
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: scrollMarquee 20s linear infinite;
+      }
+      .marquee-content {
+        display: flex;
+        gap: 12px;
+        padding-right: 12px; /* Ensure gap between loops */
+      }
+      .tag {
+        background: #f9f9f9;
+        border: 1px solid #eee;
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+      }
+
+      @keyframes scrollMarquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        } /* Shifts exactly one half so the loop is seamless */
+      }
+
+      /* --- ABOUT SECTION --- */
+      .about-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 3rem;
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2vw;
+      }
+      .bento-card {
+        border-radius: var(--radius-lg);
+        padding: 3vw;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+      }
+      .bento-1 {
+        background: linear-gradient(135deg, #d4f0a4, #b2d86e);
+      }
+      .bento-2 {
+        background: var(--card-purple);
+      }
+      .bento-3 {
+        background: url("https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2669&auto=format&fit=crop")
+          center/cover;
+        color: white;
+      }
+      .bento-inner-card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 2rem;
+        border-radius: var(--radius-md);
+        margin-top: auto;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+      .bento-3 h3 {
+        position: absolute;
+        top: 3vw;
+        left: 3vw;
+        font-size: 2rem;
+      }
+      .bento-3 p {
+        position: absolute;
+        bottom: 3vw;
+        left: 3vw;
+        right: 3vw;
+        color: white;
+        margin: 0;
+      }
+
+      /* --- DYNAMIC PORTFOLIO SLIDER --- */
+      .portfolio-wrapper {
+        background: #e2e2e2;
+        padding: 4vw 0;
+        border-radius: var(--radius-lg);
+        width: 100%;
+        position: relative;
+      }
+      .portfolio-track {
+        display: flex;
+        align-items: center;
+        gap: 2vw;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        padding-bottom: 1rem;
+        /* Hide scrollbars */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        cursor: grab;
+      }
+      .portfolio-track:active {
+        cursor: grabbing;
+      }
+      .portfolio-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Spacers let the first and last slides reach the center of the screen */
+      .slider-spacer {
+        flex: 0 0 calc(50vw - 12.5vw); /* Math to offset correctly */
+      }
+
+      .portfolio-slide {
+        flex: 0 0 auto;
+        width: 25vw; /* Default Mobile Width */
+        aspect-ratio: 9/16; /* Default Mobile Ratio */
+        scroll-snap-align: center;
+        position: relative;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        opacity: 0.4;
+        transform: scale(0.95);
+        /* Magic transitions for morphing layout */
+        transition:
+          width 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+          aspect-ratio 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+
+      /* When JS adds the .active class to the middle slide */
+      .portfolio-slide.active {
+        width: 50vw; /* Expands to Desktop Width */
+        aspect-ratio: 16/9; /* Expands to Desktop Ratio */
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .portfolio-slide iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        pointer-events: none; /* Prevents iframe hijacking swipe/drag events */
+      }
+      .overlay-text {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        color: white;
+        mix-blend-mode: difference;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      /* --- CONTACT / BUDGET SECTION --- */
+      .contact-section {
+        display: flex;
+        gap: 4vw;
+        align-items: center;
+      }
+      .contact-left {
+        flex: 1;
+        padding-right: 2vw;
+      }
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 1rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid #ddd;
+        background: #f9f9f9;
+        font-family: inherit;
+      }
+      .contact-form textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .contact-right {
+        flex: 1;
+        background: var(--lime-green);
+        border-radius: var(--radius-lg);
+        padding: 4vw;
+        color: var(--olive-green);
+      }
+      .budget-display {
+        font-size: 4vw;
+        font-weight: 700;
+        margin: 1rem 0;
+        letter-spacing: -0.05em;
+      }
+
+      /* Custom Range Slider */
+      input[type="range"] {
+        -webkit-appearance: none;
+        width: 100%;
+        background: transparent;
+        margin: 2rem 0;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 24px;
+        width: 24px;
+        border-radius: 4px;
+        background: var(--olive-green);
+        cursor: pointer;
+        margin-top: -10px;
+      }
+      input[type="range"]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 4px;
+        cursor: pointer;
+        background: rgba(58, 64, 32, 0.2);
+        border-radius: 2px;
+      }
+
+      /* --- FOOTER --- */
+      footer {
+        text-align: center;
+        padding: 4vw;
+        background: #111;
+        color: #fff;
+        border-radius: var(--radius-lg);
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 900px) {
+        .hero,
+        .contact-section {
+          flex-direction: column;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 10vw;
+        }
+        h2 {
+          font-size: 8vw;
+        }
+        .social-bar {
+          position: relative;
+          right: 0;
+          transform: none;
+          flex-direction: row;
+          margin-top: 2rem;
+          width: fit-content;
+        }
+        .about-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+
+        /* Adjust Slider sizes for mobile devices */
+        .slider-spacer {
+          flex: 0 0 10vw;
+        }
+        .portfolio-slide {
+          width: 60vw;
+        }
+        .portfolio-slide.active {
+          width: 85vw;
+          aspect-ratio: 4/3;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="social-bar">
+          <a href="#">IG</a>
+          <a href="#">Fb</a>
+          <a href="#">X</a>
+        </div>
+
+        <h1>Expert Webflow<br />development for<br />your brand.</h1>
+        <p style="max-width: 80%">
+          I build custom, pixel-perfect, and highly animated Webflow websites to
+          help you and your business stand out.
+        </p>
+
+        <div>
+          <a href="#contact" class="btn">Start a project</a>
+        </div>
+
+        <!-- NEW INFINITE MARQUEE TAGS -->
+        <div class="marquee-wrapper">
+          <div class="marquee-track">
+            <!-- First Loop Content -->
+            <div class="marquee-content">
+              <div class="tag">🚀 Fast Loading</div>
+              <div class="tag">✨ High-quality Design</div>
+              <div class="tag">📱 Fully Responsive</div>
+              <div class="tag">⚡ Advanced Animations</div>
+              <div class="tag">⚙️ CMS Setup</div>
+            </div>
+            <!-- Second Loop Content (Duplicate to make it seamless) -->
+            <div class="marquee-content">
+              <div class="tag">🚀 Fast Loading</div>
+              <div class="tag">✨ High-quality Design</div>
+              <div class="tag">📱 Fully Responsive</div>
+              <div class="tag">⚡ Advanced Animations</div>
+              <div class="tag">⚙️ CMS Setup</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right"></div>
+    </section>
+
+    <!-- ABOUT / SERVICES SECTION -->
+    <section id="about">
+      <div class="about-header">
+        <h2 style="max-width: 600px; margin: 0">
+          Access the digital growth you need, fast.
+        </h2>
+        <a href="#" class="btn btn-outline">Learn more →</a>
+      </div>
+
+      <div class="about-grid">
+        <div class="bento-card bento-1">
+          <h3 style="color: var(--olive-green); margin-bottom: 2rem">
+            No design limits
+          </h3>
+          <div class="bento-inner-card">
+            <p style="margin-bottom: 1rem; color: #333; font-weight: 500">
+              Services Included:
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
+              <span
+                class="tag"
+                style="
+                  background: var(--btn-dark);
+                  color: #fff;
+                  border: none;
+                  padding: 6px 12px;
+                "
+                >Figma to Webflow</span
+              >
+              <span
+                class="tag"
+                style="
+                  background: var(--lime-green);
+                  border: none;
+                  padding: 6px 12px;
+                "
+                >Interactions</span
+              >
+              <span
+                class="tag"
+                style="background: #e0f0f5; border: none; padding: 6px 12px"
+                >SEO Setup</span
+              >
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9rem; margin-bottom: 0">
+              I build exactly what you design, pixel for pixel.
+            </p>
+          </div>
+        </div>
+        <div class="bento-card bento-2">
+          <h3 style="color: #2a2b4a">Intuitive<br />Performance.</h3>
+          <div class="bento-inner-card">
+            <p style="font-size: 0.9rem; margin-bottom: 0.5rem">
+              Page Speed Score
+            </p>
+            <h2 style="margin: 0; font-size: 3rem">
+              99<span style="font-size: 1rem; color: #888">/100</span>
+            </h2>
+            <div style="display: flex; gap: 5px; margin-top: 10px">
+              <div
+                style="
+                  flex: 1;
+                  height: 8px;
+                  background: var(--olive-green);
+                  border-radius: 4px;
+                "
+              ></div>
+              <div
+                style="
+                  flex: 1;
+                  height: 8px;
+                  background: rgba(58, 64, 32, 0.4);
+                  border-radius: 4px;
+                "
+              ></div>
+              <div
+                style="
+                  flex: 1;
+                  height: 8px;
+                  background: rgba(58, 64, 32, 0.2);
+                  border-radius: 4px;
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div class="bento-card bento-3">
+          <h3>Hassle-free dev</h3>
+          <p>
+            Get your site launched in as little as 2 weeks, so you can
+            capitalize on growth opportunities.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO SLIDER SECTION -->
+    <section id="portfolio">
+      <h2 style="text-align: center; margin-bottom: 3rem">Recent Work</h2>
+      <div class="portfolio-wrapper">
+        <!-- The Swiping Track -->
+        <div class="portfolio-track" id="portfolioTrack">
+          <div class="slider-spacer"></div>
+
+          <!-- Slide 1 -->
+          <div class="portfolio-slide">
+            <iframe src="https://webflow.com" loading="lazy"></iframe>
+            <div class="overlay-text">MOBILE ↗</div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="portfolio-slide">
+            <iframe src="https://webflow.com" loading="lazy"></iframe>
+            <div class="overlay-text">MOBILE ↗</div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="portfolio-slide">
+            <iframe src="https://webflow.com" loading="lazy"></iframe>
+            <div class="overlay-text">MOBILE ↗</div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="portfolio-slide">
+            <iframe src="https://webflow.com" loading="lazy"></iframe>
+            <div class="overlay-text">MOBILE ↗</div>
+          </div>
+
+          <div class="slider-spacer"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / BUDGET SECTION -->
+    <section id="contact" class="contact-section">
+      <div class="contact-left">
+        <h2>One transparent fee.<br />No hidden costs.</h2>
+        <p>
+          Fill out the details below and adjust the slider to match your project
+          budget. I'll get back to you within 24 hours.
+        </p>
+        <form class="contact-form">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea
+            placeholder="Tell me about your project..."
+            required
+          ></textarea>
+          <button type="submit" class="btn" style="width: fit-content">
+            Apply now →
+          </button>
+        </form>
+      </div>
+
+      <div class="contact-right">
+        <h3 style="font-weight: 500">Calculations</h3>
+        <p
+          style="color: var(--olive-green); margin-top: 2rem; margin-bottom: 0"
+        >
+          Your selected budget
+        </p>
+        <div class="budget-display" id="budgetAmount">$2,500</div>
+        <input
+          type="range"
+          id="budgetSlider"
+          min="500"
+          max="15000"
+          step="500"
+          value="2500"
+        />
+        <p
+          style="color: var(--olive-green); margin-top: 2rem; margin-bottom: 0"
+        >
+          Typical timeline estimate
+        </p>
+        <h3 id="timelineDisplay" style="font-size: 2rem; margin-top: 0.5rem">
+          2 - 4 Weeks
+        </h3>
+      </div>
+    </section>
+
+    <footer>
+      <h2>Ready to build something great?</h2>
+      <p style="color: #999">© 2024 Webflow Developer. All rights reserved.</p>
+    </footer>
+
+    <!-- JS SCRIPTS -->
+    <script>
+      /* ==========================================
+       PORTFOLIO SLIDER & CENTER DETECTION LOGIC
+       ========================================== */
+      const track = document.getElementById("portfolioTrack");
+      const slides = document.querySelectorAll(".portfolio-slide");
+
+      function checkCenterSlide() {
+        // Find the absolute horizontal center of the track view
+        const trackCenter =
+          track.getBoundingClientRect().left + track.clientWidth / 2;
+        let closestSlide = null;
+        let minDistance = Infinity;
+
+        // Find which slide is physically closest to the center line
+        slides.forEach((slide) => {
+          const slideRect = slide.getBoundingClientRect();
+          const slideCenter = slideRect.left + slideRect.width / 2;
+          const distance = Math.abs(trackCenter - slideCenter);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestSlide = slide;
+          }
+        });
+
+        // Update classes and text based on which one won
+        slides.forEach((slide) => {
+          const overlay = slide.querySelector(".overlay-text");
+          if (slide === closestSlide) {
+            slide.classList.add("active"); // Expands to 16:9
+            if (overlay) overlay.innerText = "DESKTOP ↗";
+          } else {
+            slide.classList.remove("active"); // Shrinks to 9:16
+            if (overlay) overlay.innerText = "MOBILE ↗";
+          }
+        });
+      }
+
+      // Run center detection when scrolling/swiping
+      track.addEventListener("scroll", checkCenterSlide);
+      window.addEventListener("resize", checkCenterSlide);
+
+      // Initial setup on load. A slight timeout ensures the DOM has rendered widths
+      setTimeout(() => {
+        // Automatically scroll to the second item to demonstrate centering initially
+        if (slides[1])
+          slides[1].scrollIntoView({ behavior: "smooth", inline: "center" });
+        checkCenterSlide();
+      }, 100);
+
+      /* --- Mouse Drag to Swipe for Desktop Users --- */
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      track.addEventListener("mousedown", (e) => {
+        isDown = true;
+        startX = e.pageX - track.offsetLeft;
+        scrollLeft = track.scrollLeft;
+      });
+      track.addEventListener("mouseleave", () => {
+        isDown = false;
+      });
+      track.addEventListener("mouseup", () => {
+        isDown = false;
+      });
+      track.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - track.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed multiplier
+        track.scrollLeft = scrollLeft - walk;
+      });
+
+      /* ==========================================
+       BUDGET SLIDER LOGIC
+       ========================================== */
+      const budgetSlider = document.getElementById("budgetSlider");
+      const budgetDisplay = document.getElementById("budgetAmount");
+      const timelineDisplay = document.getElementById("timelineDisplay");
+
+      const formatCurrency = (num) => "$" + Number(num).toLocaleString("en-US");
+
+      budgetSlider.addEventListener("input", function () {
+        const val = parseInt(this.value);
+
+        if (val === parseInt(this.max))
+          budgetDisplay.textContent = formatCurrency(val) + "+";
+        else budgetDisplay.textContent = formatCurrency(val);
+
+        if (val < 2000) timelineDisplay.textContent = "1 - 2 Weeks";
+        else if (val >= 2000 && val <= 5000)
+          timelineDisplay.textContent = "2 - 4 Weeks";
+        else if (val > 5000 && val <= 10000)
+          timelineDisplay.textContent = "4 - 8 Weeks";
+        else timelineDisplay.textContent = "8+ Weeks";
+      });
+    </script>
+  </body>
+</html>

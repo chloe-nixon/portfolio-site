@@ -505,6 +505,51 @@
         filter: blur(0.5px);
         animation: ctaEmberRise linear infinite;
       }
+
+      /* ── Touch / mobile overrides ── */
+      @media (hover: none), (pointer: coarse) {
+        body { cursor: auto; }
+        a, button, [role="button"] { cursor: auto; }
+        #cursor, #cursor-ring { display: none !important; }
+      }
+
+      @media (max-width: 640px) {
+        #main-nav { padding: 1.1rem 1.25rem; }
+
+        /* Bento menu → full-screen vertical list on mobile */
+        #bento-menu {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 7rem 2rem 3rem;
+          grid-template-columns: unset;
+          grid-template-rows: unset;
+          gap: 0;
+        }
+        .bento-bg-text { display: none; }
+        .bento-cell {
+          padding: 1.4rem 0;
+          border: none;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+          border-radius: 0;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          background: transparent !important;
+        }
+        .bento-cell:first-of-type { border-top: 1px solid rgba(0, 0, 0, 0.08); }
+        .bento-cell .bc-num { position: static; font-size: 0.6rem; margin-right: 1rem; }
+        .bento-cell .bc-label { font-size: clamp(1.8rem, 9vw, 2.6rem); flex: 1; }
+        .bento-cell .bc-sub { display: none; }
+        .bento-cell .bc-arrow { position: static; }
+        /* Hide the status-only cell on mobile */
+        #bento-menu > div[style*="pointer-events:none"] { display: none; }
+
+        /* Project cards on mobile */
+        .card-rotator { height: 380px !important; }
+        .card-img-wrap { height: 240px !important; }
+        .card-img-wrap img { object-fit: contain; background: #f5f4f2; }
+      }
     </style>
   </head>
 
@@ -535,31 +580,31 @@
         <div class="bc-num">01</div>
         <div class="bc-label">Work</div>
         <div class="bc-sub">Featured projects</div>
-        <div class="bc-arrow">↗</div>
+        <div class="bc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
       <a href="#about" class="bento-cell" data-close-menu>
         <div class="bc-num">02</div>
         <div class="bc-label">About</div>
         <div class="bc-sub">Approach & skills</div>
-        <div class="bc-arrow">↗</div>
+        <div class="bc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
       <a href="#testimonials" class="bento-cell" data-close-menu>
         <div class="bc-num">03</div>
         <div class="bc-label">Clients</div>
         <div class="bc-sub">Kind words</div>
-        <div class="bc-arrow">↗</div>
+        <div class="bc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
       <a href="#contact-section" class="bento-cell" data-close-menu>
         <div class="bc-num">04</div>
         <div class="bc-label">Contact</div>
         <div class="bc-sub">Start a project</div>
-        <div class="bc-arrow">↗</div>
+        <div class="bc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
       <a href="https://linkedin.com" target="_blank" class="bento-cell">
         <div class="bc-num">05</div>
         <div class="bc-label">LinkedIn</div>
         <div class="bc-sub">Connect with me</div>
-        <div class="bc-arrow">↗</div>
+        <div class="bc-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
       <div
         class="bento-cell"
@@ -627,7 +672,7 @@
             <!-- Cool morphing button -->
             <a href="#projects" class="btn-morph">
               <span class="bm-text">View My Work</span>
-              <span class="bm-icon" style="font-size: 1.1rem">↗</span>
+              <span class="bm-icon"><svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </a>
 
             <div class="flex items-center gap-4">
@@ -805,14 +850,10 @@
                 <div class="browser-url">turbamedia.com.au</div>
               </div>
               <div
-                class="relative overflow-hidden"
+                class="card-img-wrap relative overflow-hidden"
                 style="height: 688px; flex-shrink: 0"
               >
-                <img
-                  src="TurbaMedia.png"
-                  alt="Turba Media"
-                  class="w-full h-full object-cover object-top"
-                />
+                <img src="TurbaMedia.png" alt="Turba Media" class="w-full h-full object-cover object-top" />
               </div>
               <div class="flex-1 px-8 py-3 flex items-center justify-between">
                 <div>
@@ -829,7 +870,7 @@
                   style="padding: 10px 22px; font-size: 13px"
                 >
                   <span class="bm-text">View</span>
-                  <span class="bm-icon" style="font-size: 0.9rem">↗</span>
+                  <span class="bm-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                 </a>
               </div>
             </div>
@@ -847,14 +888,10 @@
                 <div class="browser-url">globaltaxconsulting.com.au</div>
               </div>
               <div
-                class="relative overflow-hidden"
+                class="card-img-wrap relative overflow-hidden"
                 style="height: 688px; flex-shrink: 0"
               >
-                <img
-                  src="GTC.png"
-                  alt="Global Tax Consulting"
-                  class="w-full h-full object-cover object-top"
-                />
+                <img src="GTC.png" alt="Global Tax Consulting" class="w-full h-full object-cover object-top" />
               </div>
               <div class="flex-1 px-8 py-3 flex items-center justify-between">
                 <div>
@@ -871,7 +908,7 @@
                   style="padding: 10px 22px; font-size: 13px"
                 >
                   <span class="bm-text">View</span>
-                  <span class="bm-icon" style="font-size: 0.9rem">↗</span>
+                  <span class="bm-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                 </a>
               </div>
             </div>
@@ -889,14 +926,10 @@
                 <div class="browser-url">partsportal.com.au</div>
               </div>
               <div
-                class="relative overflow-hidden"
+                class="card-img-wrap relative overflow-hidden"
                 style="height: 688px; flex-shrink: 0"
               >
-                <img
-                  src="PartsPortal.png"
-                  alt="Parts Portal"
-                  class="w-full h-full object-cover object-top"
-                />
+                <img src="PartsPortal.png" alt="Parts Portal" class="w-full h-full object-cover object-top" />
               </div>
               <div class="flex-1 px-8 py-3 flex items-center justify-between">
                 <div>
@@ -913,7 +946,7 @@
                   style="padding: 10px 22px; font-size: 13px"
                 >
                   <span class="bm-text">View</span>
-                  <span class="bm-icon" style="font-size: 0.9rem">↗</span>
+                  <span class="bm-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                 </a>
               </div>
             </div>
@@ -931,14 +964,10 @@
                 <div class="browser-url">slackerapps.io</div>
               </div>
               <div
-                class="relative overflow-hidden"
+                class="card-img-wrap relative overflow-hidden"
                 style="height: 688px; flex-shrink: 0"
               >
-                <img
-                  src="SlackerApps.png"
-                  alt="Slacker Apps"
-                  class="w-full h-full object-cover object-top"
-                />
+                <img src="SlackerApps.png" alt="Slacker Apps" class="w-full h-full object-cover object-top" />
               </div>
               <div class="flex-1 px-8 py-3 flex items-center justify-between">
                 <div>
@@ -955,7 +984,7 @@
                   style="padding: 10px 22px; font-size: 13px"
                 >
                   <span class="bm-text">View</span>
-                  <span class="bm-icon" style="font-size: 0.9rem">↗</span>
+                  <span class="bm-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                 </a>
               </div>
             </div>
@@ -1716,9 +1745,7 @@
           style="background: rgba(255, 255, 255, 0.95); color: #1c1a17"
         >
           <span class="bm-text" style="color: #1c1a17">Start a Project</span>
-          <span class="bm-icon" style="font-size: 1.1rem; color: #1c1a17"
-            >↗</span
-          >
+          <span class="bm-icon" style="color: #1c1a17"><svg width="13" height="13" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </a>
       </div>
     </section>
@@ -1873,7 +1900,7 @@
             </div>
             <button type="submit" class="btn-morph mt-4 inline-flex">
               <span class="bm-text">Send Message</span>
-              <span class="bm-icon" style="font-size: 1rem">↗</span>
+              <span class="bm-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </button>
           </form>
         </div>
@@ -1886,9 +1913,7 @@
     >
       <p>© 2025 Chloe Nixon. All rights reserved.</p>
       <div class="flex gap-6 mt-4 sm:mt-0">
-        <a href="#" class="hover:text-stone-900 transition-colors">Instagram</a>
         <a href="#" class="hover:text-stone-900 transition-colors">LinkedIn</a>
-        <a href="#" class="hover:text-stone-900 transition-colors">Dribbble</a>
       </div>
     </footer>
 
@@ -2054,3 +2079,4 @@
     </script>
   </body>
 </html>
+`

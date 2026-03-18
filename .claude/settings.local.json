@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \" with open\\(''/Users/chloenixon/Desktop/untitled folder/index.html'', ''r''\\) as f: lines = f.readlines\\(\\) for i, line in enumerate\\(lines, 1\\): if any\\(x in line for x in [''.pi-item'', ''.pi-num'', ''.pi-title'', ''.pi-tag'', ''.pi-main'', ''.pi-right'', ''.pi-arrow'', ''.pi-img'', ''#projects {'', ''projects-index {'', ''projects-bg-word {'', ''.section-label {'', ''.section-count {'', ''.section-title {'', ''bp-card'']\\): if ''data:'' not in line: print\\(f''{i}: {line.rstrip\\(\\)[:120]}''\\) \")",
+      "Bash(python3 -c \" with open\\(''/Users/chloenixon/Desktop/untitled folder/index.html'', ''r''\\) as f: lines = f.readlines\\(\\) # Find the main projects CSS section for i, line in enumerate\\(lines, 1\\): if 500 < i < 900: stripped = line.strip\\(\\) if stripped and \\(''project'' in stripped.lower\\(\\) or ''pi-'' in stripped.lower\\(\\) or ''section-label'' in stripped.lower\\(\\) or ''section-count'' in stripped.lower\\(\\)\\): if ''data:'' not in stripped: print\\(f''{i}: {stripped[:120]}''\\) \")",
+      "Bash(python3 -c \":*)",
+      "Bash(python3:*)",
+      "WebFetch(domain:chloenixon.com)",
+      "Bash(curl -s https://chloenixon.com/)"
+    ]
+  }
+}
