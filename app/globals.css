@@ -1757,6 +1757,7 @@
     .topbar { padding: 14px 20px; }
     .topbar .brand { font-size: 20px; }
     .topbar-burger {
+      position: relative;
       display: inline-flex;
       flex-direction: column;
       justify-content: space-between;
@@ -1768,6 +1769,7 @@
       cursor: pointer;
       z-index: 60;
     }
+    .topbar .brand { position: relative; z-index: 60; }
     .topbar-burger span {
       display: block;
       width: 100%;
