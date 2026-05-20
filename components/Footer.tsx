@@ -30,10 +30,13 @@ export default function Footer() {
           </div>
           <div className="footer-column">
             <span className="footer-label">Elsewhere</span>
-            <a href="#" target="_blank" rel="noopener">Instagram</a>
-            <a href="#" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="#" target="_blank" rel="noopener">Twitter / X</a>
-            <a href="#" target="_blank" rel="noopener">Dribbble</a>
+            <a
+              href="https://www.linkedin.com/in/chloe-nixon-9278442b2"
+              target="_blank"
+              rel="noopener"
+            >
+              LinkedIn
+            </a>
           </div>
           <div className="footer-column">
             <span className="footer-label">Get in touch</span>
