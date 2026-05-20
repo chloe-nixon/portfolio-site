@@ -8,10 +8,7 @@ export const metadata: Metadata = {
   description:
     'Independent designer & developer making polished, considered sites for design-conscious brands. Webflow native, now writing code too.',
   icons: {
-    icon: [
-      { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', sizes: 'any' },
-    ],
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
     apple: '/apple-icon',
   },
 };
