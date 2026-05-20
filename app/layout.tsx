@@ -7,10 +7,6 @@ export const metadata: Metadata = {
   title: 'Chloe Nixon — Independent Designer & Developer',
   description:
     'Independent designer & developer making polished, considered sites for design-conscious brands. Webflow native, now writing code too.',
-  icons: {
-    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
-    apple: '/apple-icon',
-  },
 };
 
 export const viewport: Viewport = {
