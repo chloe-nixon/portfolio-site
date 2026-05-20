@@ -1768,6 +1768,8 @@
       padding: 0;
       cursor: pointer;
       z-index: 60;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
     .topbar .brand { position: relative; z-index: 60; }
     .topbar-burger span {
@@ -1793,21 +1795,15 @@
     .topbar nav.topbar-nav {
       position: fixed;
       inset: 0;
-      display: flex;
+      display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 32px;
-      /* Solid background — no backdrop-filter on mobile. The blur is
-         invisible at this opacity and causes a multi-second composite
-         delay on mobile Safari when opening the menu. */
       background: #050505;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.25s ease, visibility 0.25s ease;
       z-index: 55;
     }
-    .topbar.menu-open nav.topbar-nav { opacity: 1; visibility: visible; }
+    .topbar.menu-open nav.topbar-nav { display: flex; }
     .topbar nav.topbar-nav a {
       margin-left: 0;
       font-size: 24px;
