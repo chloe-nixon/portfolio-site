@@ -1781,6 +1781,15 @@
     .topbar.menu-open .topbar-burger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .topbar.menu-open .topbar-burger span:nth-child(2) { opacity: 0; }
     .topbar.menu-open .topbar-burger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    /* When menu is open, drop the topbar's backdrop-filter — it creates a
+       containing block that traps the fixed-position overlay inside the
+       header strip, so the page shows through. */
+    .topbar.menu-open {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: transparent;
+      border-bottom-color: transparent;
+    }
     .topbar nav.topbar-nav {
       position: fixed;
       inset: 0;
