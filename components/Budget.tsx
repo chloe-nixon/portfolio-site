@@ -8,7 +8,7 @@ type Tier = {
   features: string[];
 };
 
-const TIER_VALUES = [500, 1000, 1500, 2000, 2500, 3000, 5000];
+const TIER_VALUES = [500, 1000, 2000, 3000, 5000];
 const MIN_VALUE = TIER_VALUES[0];
 const MAX_VALUE = TIER_VALUES[TIER_VALUES.length - 1];
 
@@ -20,40 +20,28 @@ const tiers: Record<number, Tier> = {
     features: ['1 page', 'Hand-coded', '1 revision'],
   },
   1000: {
-    title: { before: 'A more ', accent: 'considered', after: ' landing page, or 3 simple pages.' },
+    title: { before: 'A more ', accent: 'complex', after: ' coded landing page.' },
     description:
-      'Either a more design-led landing page with richer interactions, or a 3-page hand-coded site at a simpler complexity. Hand-coded either way.',
-    features: ['Hand-coded', 'Up to 3 pages', '2 revisions'],
-  },
-  1500: {
-    title: { before: 'A ', accent: 'polished', after: ' 3-page coded site.' },
-    description:
-      'A 3-page hand-coded site with a tight design system and considered interactions. Built with Next.js + TypeScript.',
-    features: ['3 pages', 'Hand-coded', 'Interactions'],
+      'A more design-led, hand-coded landing page with richer interactions and a tighter design system. Built to stand out.',
+    features: ['Hand-coded', 'Interactions', '2 revisions'],
   },
   2000: {
-    title: { before: 'A ', accent: 'simple', after: ' Webflow build.' },
+    title: { before: 'A ', accent: 'simple', after: ' Webflow customisation or 3-page coded site.' },
     description:
-      'A clean Webflow build, or a light customisation of an existing Webflow template — ready for your team to take over.',
-    features: ['Webflow', 'Editable', 'Template option'],
-  },
-  2500: {
-    title: { before: 'Webflow + ', accent: 'CMS', after: ' integration.' },
-    description:
-      'A customised Webflow template with one CMS collection wired up — perfect for blogs, case studies, or any content you want to update without a developer.',
-    features: ['Webflow', '1 CMS collection', 'Editable'],
+      'Either a light customisation of an existing Webflow template ready for your team to take over, or a 3-page hand-coded site with a considered design system.',
+    features: ['Webflow or coded', 'Up to 3 pages', 'Editable'],
   },
   3000: {
-    title: { before: 'A ', accent: 'complex', after: ' custom build.' },
+    title: { before: 'A custom coded site or Webflow ', accent: 'CMS', after: ' build.' },
     description:
-      'A complex hand-coded site, a heavily customised Webflow template, or multiple CMS integrations. Production-ready and built to scale.',
-    features: ['Custom build', 'Multi-CMS', 'Production-ready'],
+      'A fully custom hand-coded website, or a Webflow template built out with CMS integration — perfect for blogs, case studies, or content you want to update without a developer.',
+    features: ['Custom build', 'CMS integration', 'Production-ready'],
   },
   5000: {
-    title: { before: 'An ', accent: 'enterprise', after: ' site build.' },
+    title: { before: 'A ', accent: 'custom', after: ' Webflow build.' },
     description:
-      "A large-scale, fully custom build with bespoke design, multiple CMS integrations, and any other complexity your team needs. Let's talk.",
-    features: ['Bespoke', 'Multi-CMS', 'Scaled'],
+      "A fully custom Webflow build with bespoke design, multiple CMS integrations, and any other complexity your team needs. Built to scale and fully editable. Let's talk.",
+    features: ['Bespoke Webflow', 'Multi-CMS', 'Scaled'],
   },
 };
 
