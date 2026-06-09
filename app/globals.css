@@ -974,7 +974,7 @@
   }
   .bw-header {
     position: absolute;
-    top: 60px; left: 36px; right: 36px;
+    top: 110px; left: 36px; right: 36px;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
