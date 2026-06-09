@@ -182,7 +182,7 @@
   .testimonials {
     position: relative;
     background: #050505;
-    padding: 220px 36px 240px;
+    padding: 220px 36px 120px;
     overflow: hidden; /* clip testimonials before they slide in from the right */
   }
   .testimonials-header {
@@ -344,7 +344,7 @@
   .contact {
     position: relative;
     background: #050505;
-    padding: 220px 36px 200px;
+    padding: 120px 36px 200px;
   }
   .contact-header {
     display: flex;
