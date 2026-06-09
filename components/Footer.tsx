@@ -25,7 +25,6 @@ export default function Footer() {
             <span className="footer-label">Site</span>
             <a href="/#projects">Work</a>
             <a href="/#testimonials">Testimonials</a>
-            <a href="/#budget">Pricing</a>
             <a href="/#contact">Contact</a>
           </div>
           <div className="footer-column">

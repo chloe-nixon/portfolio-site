@@ -40,8 +40,8 @@ export default function TopBar({ activeWork = false, activeContact = false }: To
         <Link href="/contact" data-text="Contact" className={activeContact ? 'active' : undefined} onClick={closeMenu}>
           <span>Contact</span>
         </Link>
-        <Link href="/#budget" className="nav-cta" aria-label="Get an instant quote" onClick={closeMenu}>
-          <span className="nav-cta-text">Instant quote</span>
+        <Link href="/contact" className="nav-cta" aria-label="Get in touch" onClick={closeMenu}>
+          <span className="nav-cta-text">Get in touch</span>
           <span className="nav-cta-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="5" y1="12" x2="19" y2="12" />
