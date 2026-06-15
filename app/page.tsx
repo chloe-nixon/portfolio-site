@@ -1,6 +1,7 @@
 import TopBar from '@/components/TopBar';
 import Hero from '@/components/Hero';
 import Projects from '@/components/Projects';
+import Maps from '@/components/Maps';
 import BuildWith from '@/components/BuildWith';
 import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
@@ -12,6 +13,7 @@ export default function Home() {
       <TopBar />
       <Hero />
       <Projects />
+      <Maps />
       <BuildWith />
       <Testimonials />
       <Contact />
