@@ -481,6 +481,17 @@
   }
   .form-field input::placeholder,
   .form-field textarea::placeholder { color: rgba(255,255,255,0.4); }
+  .form-input-prefix { position: relative; display: block; }
+  .form-input-prefix-symbol {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.55);
+    font-size: 16px;
+    pointer-events: none;
+  }
+  .form-input-prefix input { width: 100%; padding-left: 32px; box-sizing: border-box; }
   .form-field input:focus,
   .form-field select:focus,
   .form-field textarea:focus {

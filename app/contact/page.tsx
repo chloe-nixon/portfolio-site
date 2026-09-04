@@ -99,16 +99,16 @@ export default function ContactPage() {
                 </select>
               </div>
               <div className="form-field">
-                <label htmlFor="cp-budget">Budget</label>
-                <select id="cp-budget" name="budget" defaultValue="">
-                  <option value="">Choose…</option>
-                  <option value="500">$500</option>
-                  <option value="1000">$1,000</option>
-                  <option value="2000">$2,000</option>
-                  <option value="3000">$3,000</option>
-                  <option value="5000">$5,000+</option>
-                  <option value="unsure">Not sure yet</option>
-                </select>
+                <label htmlFor="cp-budget">Budget (AUD)</label>
+                <div className="form-input-prefix">
+                  <span className="form-input-prefix-symbol" aria-hidden="true">$</span>
+                  <input
+                    id="cp-budget"
+                    name="budget"
+                    type="text"
+                    inputMode="numeric"
+                  />
+                </div>
               </div>
             </div>
             <div className="form-field">

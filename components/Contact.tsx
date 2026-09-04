@@ -124,18 +124,16 @@ export default function Contact() {
                   </select>
                 </div>
                 <div className="form-field">
-                  <label htmlFor="contact-budget">Budget</label>
-                  <select id="contact-budget" name="budget" defaultValue="">
-                    <option value="">Choose…</option>
-                    <option value="500">$500</option>
-                    <option value="1000">$1,000</option>
-                    <option value="1500">$1,500</option>
-                    <option value="2000">$2,000</option>
-                    <option value="2500">$2,500</option>
-                    <option value="3000">$3,000</option>
-                    <option value="5000">$5,000+</option>
-                    <option value="unsure">Not sure yet</option>
-                  </select>
+                  <label htmlFor="contact-budget">Budget (AUD)</label>
+                  <div className="form-input-prefix">
+                    <span className="form-input-prefix-symbol" aria-hidden="true">$</span>
+                    <input
+                      id="contact-budget"
+                      name="budget"
+                      type="text"
+                      inputMode="numeric"
+                    />
+                  </div>
                 </div>
               </div>
               <div className="form-field">
