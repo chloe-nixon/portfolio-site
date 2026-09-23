@@ -6,7 +6,7 @@ type Tool = { name: string; blurb: string; code: string; img: string };
 
 const tools: Tool[] = [
   { code: 'WF', name: 'Webflow',       img: '/tools/webflow.png',       blurb: 'My production tool for marketing sites and CMS-driven content. Fast launches, clean handoff to in-house teams, and a familiar editor for non-technical clients.' },
-  { code: 'AS', name: 'Astro',         img: '/tools/astro.svg',         blurb: 'My go-to for content-heavy marketing sites that need to be fast. Ships near-zero JavaScript by default, with islands for the interactive bits that actually need it.' },
+  { code: 'AS', name: 'Astro',         img: '/tools/astro.png',         blurb: 'My go-to for content-heavy marketing sites that need to be fast. Ships near-zero JavaScript by default, with islands for the interactive bits that actually need it.' },
   { code: 'NX', name: 'Next.js',       img: '/tools/next.webp',         blurb: 'When a portfolio or marketing site needs real interactivity and a tight performance budget. Server components, static rendering, and an opinionated structure I trust.' },
   { code: 'TS', name: 'TypeScript',    img: '/tools/typescript.png',    blurb: 'My default for any code that lives longer than a sketch. Catches bugs at the keyboard and makes refactors painless six months later.' },
   { code: 'DO', name: 'Digital Ocean', img: '/tools/digital-ocean.webp',blurb: 'Where finished sites ship from. Predictable pricing, a clean dashboard, and reliable infrastructure for everything from static landing pages to Next.js deployments.' },

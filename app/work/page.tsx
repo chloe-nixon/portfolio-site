@@ -7,6 +7,15 @@ import Link from 'next/link';
 const works = [
   {
     n: '01',
+    title: ['Zone 34 — physiotherapy, made ', 'easy to find', '.'] as const,
+    body: "A large-scale Webflow build for a physiotherapy clinic, delivered in partnership with Multiply Digital. Heavy custom code throughout, including a multi-category filtering system that lets visitors quickly find the right practitioner, built with Finsweet attributes and custom JavaScript. Signature cut-edge visuals use custom clip-path styling to stay crisp at every breakpoint, alongside a structured CMS, horizontal scroll sliders and custom pagination.",
+    tags: ['Webflow', 'Custom code', '2026'],
+    laptop: '/zone34-laptop.jpeg',
+    mobile: '/zone34-iphone.jpeg',
+    url: 'https://zone34.com.au/',
+  },
+  {
+    n: '02',
     title: ['Global Tax Consulting — international tax, made ', 'clear', '.'] as const,
     body: 'A custom Webflow build for an international tax practice serving expats and globally mobile professionals navigating UK rules across 50+ countries. Editable case studies, downloadable guides, and an interactive index tool — all on a CMS the team can update themselves.',
     tags: ['Webflow', 'CMS', '2025'],
@@ -15,7 +24,7 @@ const works = [
     url: 'https://www.globaltaxconsulting.co.uk/',
   },
   {
-    n: '02',
+    n: '03',
     title: ['TidyHQ — club management, ', 'simplified', '.'] as const,
     body: 'A full product-design system in Figma for an all-in-one membership platform that replaces spreadsheets and stitched-together tools. Covers dashboards, marketing surfaces, and onboarding flows — handed off to their in-house engineering team.',
     tags: ['Figma', 'Product design', '2026'],
@@ -24,7 +33,7 @@ const works = [
     url: 'https://tidyhq.com/',
   },
   {
-    n: '03',
+    n: '04',
     title: ['Parts Portal — heavy-duty parts, ', 'online', '.'] as const,
     body: 'A custom Webflow build for an industrial auto-electrical supplier serving mining and earthmoving operators. Structured catalogue, custom wiring-harness enquiries, and a clean CMS the team can run themselves.',
     tags: ['Webflow', 'Custom', '2025'],
@@ -33,7 +42,7 @@ const works = [
     url: 'https://www.partsportal.com.au/',
   },
   {
-    n: '04',
+    n: '05',
     title: ["Slacker Apps — an app studio's ", 'home', '.'] as const,
     body: "A heavily customised Webflow template with bespoke components — built to showcase an immersive-tech studio's apps, VR, AR, and AI work for brands and venues. Easy to update in-house, with the complexity of a fully custom build.",
     tags: ['Webflow', 'Custom build', '2025'],
@@ -42,22 +51,13 @@ const works = [
     url: 'https://www.slackerapps.co.jp/',
   },
   {
-    n: '05',
+    n: '06',
     title: ['Turba Media — an AI marketing platform, ', 'scaled', '.'] as const,
     body: 'An enterprise Webflow build for an AI-powered audience intelligence and ad-automation platform. Custom modules for case studies, integrations, and live demos — built to scale across dozens of pages, fully editable by their team.',
     tags: ['Webflow', 'Enterprise', '2025'],
     laptop: '/images/turba-media.png',
     mobile: '/images/turbamediamobile.png',
     url: 'https://www.turbamedia.io/',
-  },
-  {
-    n: '06',
-    title: ['Zone 34 — physiotherapy, made ', 'easy to find', '.'] as const,
-    body: "A large-scale Webflow build for a physiotherapy clinic, delivered in partnership with Multiply Digital. Heavy custom code throughout, including a multi-category filtering system that lets visitors quickly find the right practitioner, built with Finsweet attributes and custom JavaScript. Signature cut-edge visuals use custom clip-path styling to stay crisp at every breakpoint, alongside a structured CMS, horizontal scroll sliders and custom pagination.",
-    tags: ['Webflow', 'Custom code', '2026'],
-    laptop: '/zone34-laptop.jpeg',
-    mobile: '/zone34-iphone.jpeg',
-    url: 'https://zone34.com.au/',
   },
   {
     n: '07',
