@@ -8,7 +8,7 @@ export default function Footer() {
 
       <span className="footer-status">
         <span className="dot" />
-        Available for projects · Spring 2026
+        Available for projects
       </span>
 
       <div className="footer-top">
@@ -17,7 +17,7 @@ export default function Footer() {
             chloe <span className="accent">nixon</span>.
           </h3>
           <p className="footer-tagline">
-            Independent designer & developer making polished, considered sites for design-conscious brands.
+            Australian website developer & designer based in Queensland, making polished, considered sites for design-conscious brands.
           </p>
         </div>
         <div className="footer-links">

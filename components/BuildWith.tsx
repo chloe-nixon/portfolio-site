@@ -6,6 +6,7 @@ type Tool = { name: string; blurb: string; code: string; img: string };
 
 const tools: Tool[] = [
   { code: 'WF', name: 'Webflow',       img: '/tools/webflow.png',       blurb: 'My production tool for marketing sites and CMS-driven content. Fast launches, clean handoff to in-house teams, and a familiar editor for non-technical clients.' },
+  { code: 'AS', name: 'Astro',         img: '/tools/astro.svg',         blurb: 'My go-to for content-heavy marketing sites that need to be fast. Ships near-zero JavaScript by default, with islands for the interactive bits that actually need it.' },
   { code: 'NX', name: 'Next.js',       img: '/tools/next.webp',         blurb: 'When a portfolio or marketing site needs real interactivity and a tight performance budget. Server components, static rendering, and an opinionated structure I trust.' },
   { code: 'TS', name: 'TypeScript',    img: '/tools/typescript.png',    blurb: 'My default for any code that lives longer than a sketch. Catches bugs at the keyboard and makes refactors painless six months later.' },
   { code: 'DO', name: 'Digital Ocean', img: '/tools/digital-ocean.webp',blurb: 'Where finished sites ship from. Predictable pricing, a clean dashboard, and reliable infrastructure for everything from static landing pages to Next.js deployments.' },
@@ -140,7 +141,8 @@ export default function BuildWith() {
 
       spokes.forEach((spoke, i) => {
         const colX = ((i + 0.5) / spokes.length) * stageW;
-        const finalAngleDeg = -30 + i * 60;
+        const angleStep = 360 / spokes.length;
+        const finalAngleDeg = -90 + angleStep / 2 + i * angleStep;
         const finalAngleRad = (finalAngleDeg * Math.PI) / 180;
         const finalEndX = cx + Math.cos(finalAngleRad) * radius;
         const finalEndY = cy + Math.sin(finalAngleRad) * radius;
@@ -247,7 +249,7 @@ export default function BuildWith() {
         </div>
 
         <div className="bw-caption" ref={captionRef}>
-          <span>Six tools, one workflow</span>
+          <span>Seven tools, one workflow</span>
           <span>Scroll to converge ↓</span>
         </div>
       </div>

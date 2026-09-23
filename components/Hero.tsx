@@ -14,11 +14,11 @@ export default function Hero() {
           Fast websites, built <span className="accent">right</span>.
         </h1>
         <p className="hero-about">
-          Independent designer & developer making polished, considered sites for design-conscious brands. Webflow native, now writing code too.
+          Australian website developer and designer, based in Queensland, making polished, considered sites for design-conscious brands. Webflow native, building with Astro and Next.js.
         </p>
         <div className="meta">
-          <span>Webflow → Code</span>
-          <span>2026</span>
+          <span>Australia · Queensland</span>
+          <span>Webflow · Astro · Code</span>
         </div>
       </div>
 

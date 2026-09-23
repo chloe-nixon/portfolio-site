@@ -52,12 +52,21 @@ const works = [
   },
   {
     n: '06',
-    title: ["Micky Dollimore — designer & developer's ", 'portfolio', '.'] as const,
-    body: 'A fully custom design and build for an independent designer and software developer — bespoke typography system, considered interactions, and a flexible case-study structure. Launching soon.',
-    tags: ['Custom build', 'Portfolio', '2026'],
-    laptop: '/images/micky-project.png',
-    mobile: '/images/mickmobile.webp',
-    url: '#',
+    title: ['Zone 34 — physiotherapy, made ', 'easy to find', '.'] as const,
+    body: "A large-scale Webflow build for a physiotherapy clinic, delivered in partnership with Multiply Digital. Heavy custom code throughout, including a multi-category filtering system that lets visitors quickly find the right practitioner, built with Finsweet attributes and custom JavaScript. Signature cut-edge visuals use custom clip-path styling to stay crisp at every breakpoint, alongside a structured CMS, horizontal scroll sliders and custom pagination.",
+    tags: ['Webflow', 'Custom code', '2026'],
+    laptop: '/zone34-laptop.jpeg',
+    mobile: '/zone34-iphone.jpeg',
+    url: 'https://zone34.com.au/',
+  },
+  {
+    n: '07',
+    title: ['Tuckbox — custom cabinetry, built to ', 'showcase', '.'] as const,
+    body: "A Webflow build for a custom cabinetry business, delivered in partnership with Multiply Digital. Heavy custom code throughout, with signature cut-edge visuals created using custom clip-path styling that stays crisp at every breakpoint, alongside a structured CMS, horizontal scroll sliders and custom pagination — a fast, scalable site the team can manage with ease.",
+    tags: ['Webflow', 'Custom code', '2026'],
+    laptop: '/tuckbox-laptop.jpeg',
+    mobile: '/tuckbox-iphone.jpeg',
+    url: 'https://www.tuckbox.com.au/',
   },
 ];
 
