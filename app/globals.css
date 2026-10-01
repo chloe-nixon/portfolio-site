@@ -409,31 +409,6 @@
 
   .contact-panel { display: none; }
   .contact-panel.active { display: block; }
-  /* Loading spinner inside the Calendly widget container until the iframe is injected */
-  .calendly-inline-widget:empty {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-  }
-  .calendly-inline-widget:empty::before {
-    content: '';
-    width: 32px;
-    height: 32px;
-    border: 2px solid rgba(255,140,40,0.25);
-    border-top-color: #ff8c28;
-    border-radius: 50%;
-    animation: cal-spin 0.8s linear infinite;
-  }
-  .calendly-inline-widget:empty::after {
-    content: 'Loading scheduler';
-    color: rgba(255,255,255,0.5);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-  @keyframes cal-spin { to { transform: rotate(360deg); } }
 
   /* ---- Contact form ---- */
   .contact-form { display: flex; flex-direction: column; gap: 22px; }
@@ -600,15 +575,6 @@
   }
   .contact-submit-arrow svg { width: 12px; height: 12px; display: block; }
   .contact-submit:hover .contact-submit-arrow { transform: translateX(2px); }
-
-  /* ---- Calendly ---- */
-  .calendly-wrap {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .calendly-inline-widget { min-width: 320px; height: 700px; }
 
   @media (max-width: 768px) {
     .form-row { grid-template-columns: 1fr; gap: 22px; }
@@ -1342,8 +1308,6 @@
   }
   .contact-page .contact-form { max-width: 760px; gap: 28px; }
   .contact-page .contact-form .form-field textarea { min-height: 220px; }
-  .contact-page .calendly-wrap { max-width: 1200px; }
-  .contact-page .calendly-inline-widget { width: 100%; }
   .contact-page-form-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
@@ -1403,8 +1367,8 @@
     border-radius: 999px;
   }
   .work-headline {
-    display: grid; grid-template-columns: 1fr 1.2fr;
-    gap: 60px; align-items: end;
+    display: flex; flex-direction: column;
+    gap: 32px;
     margin-bottom: 70px;
   }
   .work-title {
@@ -1426,7 +1390,7 @@
   .work-desc {
     font-size: 15px; line-height: 1.6;
     color: rgba(255,255,255,0.72);
-    max-width: 42ch;
+    max-width: none;
   }
   .work-visit {
     position: relative;
@@ -1576,9 +1540,6 @@
     transform: scale(1.015);
   }
 
-  @media (max-width: 900px) {
-    .work-headline { grid-template-columns: 1fr; gap: 32px; }
-  }
 
   /* ============ FOOTER (compact version) ============ */
   .work-footer {
@@ -1810,4 +1771,311 @@
     .faq-list { grid-template-columns: 1fr; column-gap: 0; }
     .faq-question { padding: 20px 0; font-size: 15px; }
     .faq-answer { padding-bottom: 20px; font-size: 14px; }
+  }
+
+  /* ============ PLACEHOLDER IMAGE ============ */
+  .placeholder-image {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.05),
+      rgba(255,255,255,0.05) 12px,
+      rgba(255,255,255,0.03) 12px,
+      rgba(255,255,255,0.03) 24px
+    );
+    border: 1px dashed rgba(255,255,255,0.16);
+    overflow: hidden;
+  }
+  .placeholder-image span {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  /* ============ WORK LINKS (work list + case study) ============ */
+  .work-links { display: flex; flex-wrap: wrap; gap: 14px; }
+
+  /* ============ CASE STUDY PAGE ============ */
+  .case-study-body {
+    padding: 0 36px 100px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .case-study-images { margin-bottom: 90px; }
+  .case-study-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 56px;
+    border-top: 1px solid rgba(255,255,255,0.10);
+    padding-top: 56px;
+  }
+  .case-study-col { min-width: 0; }
+  .case-study-col .label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 20px;
+  }
+  .case-study-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    list-style: none;
+  }
+  .case-study-list li {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.72);
+    padding-left: 22px;
+    position: relative;
+  }
+  .case-study-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ff5a0f;
+  }
+  .case-study-result {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: 28px;
+  }
+  .case-study-next {
+    border-top: 1px solid rgba(255,255,255,0.10);
+    padding: 90px 36px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .case-study-next-link { display: block; text-decoration: none; }
+  .case-study-next-link .label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 20px; display: block;
+  }
+  .case-study-next-link h2 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600; font-size: clamp(32px, 4.4vw, 64px);
+    line-height: 1; letter-spacing: -0.03em;
+    color: #fff; text-transform: lowercase;
+    transition: color 0.25s ease;
+  }
+  .case-study-next-link h2 .accent {
+    font-family: 'Times New Roman', Georgia, serif;
+    font-style: italic; font-weight: 400;
+  }
+  .case-study-next-link:hover h2 { color: rgba(255,255,255,0.75); }
+  @media (max-width: 900px) {
+    .case-study-columns { grid-template-columns: 1fr; gap: 40px; }
+  }
+  @media (max-width: 768px) {
+    .case-study-body { padding: 0 24px 60px; }
+    .case-study-images { margin-bottom: 50px; }
+    .case-study-next { padding: 60px 24px; }
+  }
+
+  /* ============ SERVICE PAGES ============ */
+  .service-features {
+    padding: 0 36px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    padding-bottom: 90px;
+  }
+  .service-feature h2 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600; font-size: 22px;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+  .service-feature p {
+    font-size: 15px; line-height: 1.6;
+    color: rgba(255,255,255,0.68);
+  }
+  .service-work {
+    padding: 90px 36px;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+  }
+  .service-work-header { margin-bottom: 40px; }
+  .service-work-header .label {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .service-work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+  }
+  .service-work-card { text-decoration: none; display: block; }
+  .service-work-card-title {
+    display: block;
+    margin-top: 14px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+  }
+  .service-cta {
+    padding: 110px 36px;
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+  .service-cta h2 {
+    font-family: 'Times New Roman', Georgia, serif;
+    font-style: italic; font-weight: 400;
+    font-size: clamp(28px, 4vw, 48px);
+    color: #fff;
+  }
+  @media (max-width: 900px) {
+    .service-features { grid-template-columns: 1fr; gap: 36px; padding-bottom: 60px; }
+  }
+  @media (max-width: 768px) {
+    .service-features, .service-work, .service-cta { padding-left: 24px; padding-right: 24px; }
+  }
+
+  /* Heading on the left, description on the right, sharing the same
+     baseline, instead of stacking with an unrelated eyebrow label.
+     Used by index-style headers (blog, work) that don't need an eyebrow. */
+  .split-header .page-header-row { align-items: flex-end; }
+  .split-header .page-intro {
+    margin-top: 0;
+    flex: 0 1 420px;
+    text-align: left;
+  }
+  @media (max-width: 900px) {
+    .split-header .page-header-row { align-items: flex-start; }
+    .split-header .page-intro { margin-top: 24px; flex-basis: 100%; }
+  }
+
+  /* ============ BLOG ============ */
+  .blog-list {
+    padding: 90px 36px 160px;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+  }
+  .blog-list-item {
+    display: grid;
+    grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+    gap: 36px;
+    align-items: start;
+    text-decoration: none;
+  }
+  .blog-list-item .placeholder-image { aspect-ratio: 16 / 10; }
+  .blog-list-item-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .blog-list-item-image img { object-fit: cover; }
+
+  /* Case study titles are sentence-length, like blog titles, so the header
+     stacks top-to-bottom instead of the space-between row short taglines use
+     (that row leaves an awkward dead gap next to the eyebrow on shorter titles). */
+  .case-study-header .page-header-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  /* .page-header-row centers itself (max-width 1400px, margin auto) once the
+     viewport is wide enough, but .page-intro is a narrower box (52ch) that
+     was centering independently, so its left edge didn't track the row's.
+     Match the row's actual left inset instead of centering intro on its own. */
+  .case-study-header .page-intro {
+    margin-left: max(0px, calc((100% - 1400px) / 2));
+  }
+
+  /* Blog post titles are full sentences, not short taglines, so they get their
+     own scale instead of the giant italic .page-header h1 treatment, and the
+     header stacks top-to-bottom instead of the space-between row other pages use. */
+  .blog-post-header .page-header-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .blog-post-header h1 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 52px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-transform: none;
+    max-width: 22ch;
+  }
+  .blog-list-item-body h2 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600; font-size: clamp(22px, 2.6vw, 30px);
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin: 10px 0 14px;
+  }
+  .blog-list-item-meta {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .blog-list-item-body p {
+    font-size: 15px; line-height: 1.6;
+    color: rgba(255,255,255,0.68);
+  }
+  .blog-post-hero {
+    padding: 0 36px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .blog-post-hero-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .blog-post-hero-image img { object-fit: cover; }
+  .blog-post-body {
+    padding: 0 36px 160px;
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .blog-post-body p {
+    font-size: 17px; line-height: 1.75;
+    color: rgba(255,255,255,0.78);
+  }
+  @media (max-width: 768px) {
+    .blog-list { padding: 60px 24px 100px; gap: 50px; }
+    .blog-list-item { grid-template-columns: 1fr; gap: 20px; }
+    .blog-post-hero, .blog-post-body { padding-left: 24px; padding-right: 24px; }
+    .blog-post-body p { font-size: 16px; }
   }

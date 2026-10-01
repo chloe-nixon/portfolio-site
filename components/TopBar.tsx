@@ -6,9 +6,10 @@ import { useEffect, useState } from 'react';
 type TopBarProps = {
   activeWork?: boolean;
   activeContact?: boolean;
+  activeBlog?: boolean;
 };
 
-export default function TopBar({ activeWork = false, activeContact = false }: TopBarProps) {
+export default function TopBar({ activeWork = false, activeContact = false, activeBlog = false }: TopBarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Lock body scroll + close on Esc while menu is open
@@ -30,12 +31,15 @@ export default function TopBar({ activeWork = false, activeContact = false }: To
 
   return (
     <header className={`topbar${menuOpen ? ' menu-open' : ''}`}>
-      <Link className="brand" href="/" aria-label="Chloe Nixon — home" onClick={closeMenu}>
+      <Link className="brand" href="/" aria-label="Chloe Nixon, home" onClick={closeMenu}>
         Chloe Nixon
       </Link>
       <nav className="topbar-nav">
         <Link href="/work" data-text="Work" className={activeWork ? 'active' : undefined} onClick={closeMenu}>
           <span>Work</span>
+        </Link>
+        <Link href="/blog" data-text="Blog" className={activeBlog ? 'active' : undefined} onClick={closeMenu}>
+          <span>Blog</span>
         </Link>
         <Link href="/contact" data-text="Contact" className={activeContact ? 'active' : undefined} onClick={closeMenu}>
           <span>Contact</span>

@@ -4,7 +4,11 @@ import LenisProvider from '@/components/LenisProvider';
 import PageTransition from '@/components/PageTransition';
 
 export const metadata: Metadata = {
-  title: 'Chloe Nixon — Australian Website Developer & Designer',
+  metadataBase: new URL('https://chloenixon.com'),
+  title: {
+    default: 'Chloe Nixon: Australian Website Developer & Designer',
+    template: '%s | Chloe Nixon',
+  },
   description:
     'Chloe Nixon is an Australian website developer and designer based in Queensland, building polished, considered sites with Webflow, Astro, and Next.js for design-conscious brands worldwide.',
   keywords: [
@@ -15,6 +19,23 @@ export const metadata: Metadata = {
     'Webflow developer Australia',
     'Next.js developer Australia',
   ],
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: 'https://chloenixon.com',
+    siteName: 'Chloe Nixon',
+    title: 'Chloe Nixon: Australian Website Developer & Designer',
+    description:
+      'Chloe Nixon is an Australian website developer and designer based in Queensland, building polished, considered sites with Webflow, Astro, and Next.js for design-conscious brands worldwide.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Chloe Nixon: Australian Website Developer & Designer',
+    description:
+      'Chloe Nixon is an Australian website developer and designer based in Queensland, building polished, considered sites with Webflow, Astro, and Next.js for design-conscious brands worldwide.',
+  },
 };
 
 export const viewport: Viewport = {

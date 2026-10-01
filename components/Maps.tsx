@@ -15,7 +15,7 @@ type MapItem = {
 const maps: MapItem[] = [
   {
     n: '01',
-    title: ['CometWatch — tracking the night ', 'sky', '.'],
+    title: ['CometWatch: tracking the night ', 'sky', '.'],
     body: 'An interactive map for following comet activity in real time. Built with a custom data pipeline and a lean, fast front-end so visitors can scan the sky from anywhere in the world.',
     tags: ['Maps', 'Custom build', '2026'],
     embedUrl: 'https://commetwatch.com/?embed=1',

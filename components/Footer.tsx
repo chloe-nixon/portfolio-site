@@ -40,9 +40,7 @@ export default function Footer() {
           <div className="footer-column">
             <span className="footer-label">Get in touch</span>
             <a href="mailto:hello@chloenixon.com">hello@chloenixon.com</a>
-            <a href="https://calendly.com/hello-chloenixon/30min" target="_blank" rel="noopener">
-              Book a call
-            </a>
+            <a href="/contact">Contact form</a>
           </div>
         </div>
       </div>
